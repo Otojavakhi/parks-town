@@ -62,7 +62,7 @@ export const FloorDetails = () => {
     const polygon = e.target;
     const bbox = polygon.getBBox();
     const centerX = bbox.x + bbox.width / 2;
-    const centerY = bbox.y + bbox.height / 2;
+    const centerY = bbox.y;
 
     setApartmentCoordinates({ x: centerX, y: centerY });
   };
@@ -119,7 +119,7 @@ export const FloorDetails = () => {
             className="coord-div"
             style={{
               left: apartmentCoordinates.x + 5,
-              top: apartmentCoordinates.y - 130,
+              top: apartmentCoordinates.y - 50,
             }}
           >
             <span className="apartment-poly-text">
