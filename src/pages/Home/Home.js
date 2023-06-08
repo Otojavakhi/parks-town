@@ -21,7 +21,9 @@ export const Home = () => {
           აარჩიე აპარტამენტი
         </Link>
       </div>
-      <img src={chooseBuilding} alt="choose" />
+      <Link to="choose-building">
+        <img src={chooseBuilding} alt="choose" />
+      </Link>
     </div>
   );
 };

@@ -40,9 +40,11 @@ export const FloorDetails = () => {
   // shows apartments details when hover on each polygon element
   const handleMouseOver = (e) => {
     if (!e.target.hasAttribute("data-apartment")) return;
+
     console.log(e.target.getAttribute("data-apartment"));
     // takes data-apartment attribute from polygon element and finds exact apartment
     const datasetApartment = e.target.getAttribute("data-apartment");
+
     const foundApartment = floor.apartments.find(
       (apartment) =>
         apartment.apartment === datasetApartment && apartment.sold !== true

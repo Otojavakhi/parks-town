@@ -89,7 +89,7 @@ export default function FloorsPage() {
             <p>Remaining Apartments: {remainingApartments}</p>
           </div>
         )}
-        <p>search{remainingApartments}</p>
+        <p>search</p>
       </div>
       <div className="main-right-building">
         <svg
