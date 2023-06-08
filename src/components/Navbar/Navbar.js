@@ -17,7 +17,7 @@ export const Navbar = () => {
           <ul className="nav-list">
             <NavLink to="project">პროექტის შესახებ</NavLink>
             <NavLink to="contact">კონტაქტი</NavLink>
-            <NavLink to="blog">ბლოგ</NavLink>
+            <NavLink to="blog">ბლოგი</NavLink>
           </ul>
         </div>
         <div className="nav-icons">
