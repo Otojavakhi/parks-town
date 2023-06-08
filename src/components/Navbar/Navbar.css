@@ -1,0 +1,61 @@
+.nav-container {
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  padding: 1.2rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 10%;
+}
+
+.nav-links {
+  margin-top: 30px;
+}
+
+.nav-icon {
+  height: 30px;
+  width: 30px;
+  color: gray;
+  cursor: pointer;
+}
+
+.nav-icons {
+  margin: 30px 0 0 8rem;
+}
+
+.nav-icon-instagram {
+  margin: 0 0.5rem;
+}
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list a {
+  text-decoration: none;
+  margin: 0 5px;
+  padding: 26px;
+  font-size: 1.2rem;
+  color: #888888;
+  font-family: "BPG Nino Mtavruli", sans-serif;
+}
+
+.nav-list a:hover {
+  color: #1d84a1;
+}
+
+.nav-list a.active {
+  color: #1d84a1;
+  border-bottom: 4px solid rgb(21, 133, 135);
+}
+
+.logo {
+  margin-top: 25px;
+  max-width: 14rem;
+  max-height: 14rem;
+}

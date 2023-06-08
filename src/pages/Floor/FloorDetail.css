@@ -1,0 +1,43 @@
+.floor-details {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.floor-container {
+  position: relative;
+}
+
+.floor-container svg {
+  position: absolute;
+}
+
+.floor-container svg polygon {
+  cursor: pointer;
+}
+
+.poly-fill.sold-apartment {
+  stroke: rgba(47, 163, 234, 0.64);
+  fill: rgba(190, 24, 13, 0.64);
+  stroke-width: 4px;
+  opacity: 0.7;
+}
+
+.coord-div {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background-color: #3eb3d1;
+  border: 1px solid #a84242;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.apartment-poly-text {
+  font-size: 1rem;
+  overflow: hidden;
+  color: rgb(123, 63, 63);
+}

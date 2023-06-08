@@ -1,0 +1,38 @@
+.apartment-details {
+  display: grid;
+  grid-template-columns: 500px 1fr;
+  margin: 0 80px;
+  background-color: #fff;
+  padding: 20px;
+}
+
+.apartment-description {
+  border-right: 1px solid #e5e5e5;
+}
+
+.apartment-price {
+  background-color: rgb(228, 222, 215);
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.apartment-price h3 {
+  color: rgb(59, 59, 59);
+  margin-bottom: 10px;
+}
+
+.apartment-price p {
+  color: rgb(120, 117, 117);
+}
+
+.apartment-imgs {
+  position: relative;
+  text-align: center;
+}
+.apartment-imgs button {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  padding: 7px 12px;
+  cursor: pointer;
+}

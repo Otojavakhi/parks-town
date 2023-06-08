@@ -1,0 +1,39 @@
+.choose-building-container {
+  margin-top: 10px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.building-container {
+  position: relative;
+}
+
+#b-svg-container {
+  position: absolute;
+}
+
+.building-container img {
+  max-width: 710px;
+  max-height: 710px;
+}
+.poly-fill {
+  /* fill: rgba(38, 231, 119, 0.4); */
+  stroke: rgba(47, 163, 234, 0.64);
+  /* stroke-dasharray: 0; */
+  /* stroke-linecap: round;
+  opacity: 1; */
+  fill: rgba(47, 163, 234, 0.64);
+  stroke-width: 4px;
+  /* stroke: transparent; */
+  transition-duration: 500ms;
+  opacity: 0.7;
+}
+
+/* @media screen {
+  .building-container img {
+    max-width: 400px;
+    max-height: 400px;
+  }
+} */

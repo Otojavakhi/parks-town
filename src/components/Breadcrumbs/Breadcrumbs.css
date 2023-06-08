@@ -1,0 +1,32 @@
+.bread-crumbs {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+
+  /* border-bottom: 2px solid #d7d7d8;
+  border-right: 2px solid #d7d7d8;
+  border-left: 2px solid #d7d7d8; */
+  background-color: rgb(204, 215, 215);
+
+  padding: 15px;
+}
+
+.bread-crumbs > * {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.bread-crumbs .crumb:after {
+  content: ">";
+  margin-left: 10px;
+}
+
+.bread-crumbs .crumb:last-child:after {
+  display: none;
+}
+.bread-crumbs .crumb a {
+  font-family: "BPG Nino Mtavruli", sans-serif;
+  text-decoration: none;
+  color: rgb(85, 156, 85);
+}

@@ -1,0 +1,61 @@
+.main-content {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 20px;
+  padding: 0 70px;
+}
+
+.main-right-building {
+  position: relative;
+}
+
+#b-svg-container {
+  position: absolute;
+}
+
+.building-left-side {
+  border-right: 1px solid #e5e5e5;
+  position: relative;
+}
+
+.default-poly-fill {
+  opacity: 0;
+  cursor: pointer;
+}
+
+.poly-fill {
+  fill: yellow;
+}
+
+.main-right-building img {
+  max-height: 530px;
+}
+
+/* .tooltip {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 255, 0.8);
+  padding: 5px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+} */
+
+.floor-info {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(33, 143, 123, 0.676);
+  padding: 5px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  pointer-events: none; /* Prevent the tooltip from capturing mouse events */
+  z-index: 9999; /* Set a higher z-index to ensure it appears on top of other elements */
+}
+
+.floor-info.active {
+  display: block;
+}
