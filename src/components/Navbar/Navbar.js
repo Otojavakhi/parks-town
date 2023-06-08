@@ -25,7 +25,7 @@ export const Navbar = () => {
             className="nav-icon-link"
             href="https://www.facebook.com/"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noreferrer"
           >
             <CiFacebook className="nav-icon" />
           </a>
@@ -33,7 +33,7 @@ export const Navbar = () => {
             className="nav-icon-link"
             href="https://www.instagram.com/"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noreferrer"
           >
             <AiOutlineInstagram className="nav-icon nav-icon-instagram" />
           </a>
