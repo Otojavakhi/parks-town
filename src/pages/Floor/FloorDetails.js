@@ -12,13 +12,14 @@ import { db } from "../../FirebaseConfig";
 import { useEffect } from "react";
 import FloorError from "./FloorError";
 import { useState } from "react";
+import { Spinner } from "../../components/Spinner/Spinner.js";
 
 export const FloorDetails = () => {
   const { fl } = useParams();
   // loads data from Loader Function
   const floor = useLoaderData();
   // loads images from firebase
-  const { getImgUrl, imgUrl } = MainUseContext();
+  const { getImgUrl, imgUrl, isLoading, setIsLoading } = MainUseContext();
 
   const navigate = useNavigate();
 
@@ -34,6 +35,14 @@ export const FloorDetails = () => {
     const imageUrl = floor.floorImg;
     getImgUrl(imageUrl);
   }, [floor.floorImg, getImgUrl]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      // return;
+    }, 500);
+  }, []);
 
   if (!floor) return <FloorError />;
 
@@ -91,6 +100,13 @@ export const FloorDetails = () => {
     navigate(foundApartment.apartment);
   };
 
+  if (isLoading)
+    return (
+      <div className="isloading">
+        <Spinner />
+      </div>
+    );
+
   return (
     <div className="floor-details">
       <div className="floor-container">
@@ -146,15 +162,29 @@ export const floorDetailLoader = async ({ params }) => {
   const q = query(colRef, where("floor", "==", fl));
 
   try {
+    // checks users Network online status
+    const online = window.navigator.onLine;
+
+    if (!online) {
+      throw new Error("Internet connection not available");
+    }
+
     const snapshot = await getDocs(q);
+
+    // checks if data is arrived otherwise throws an error.
+    if (snapshot.empty) throw Error("Page doesn't exists!");
+
     let floor = {};
     snapshot.docs.forEach((doc) => {
       floor = { ...doc.data() };
     });
-    if (!floor.apartments) throw Error("Floor doesn't exists!");
 
     return floor;
   } catch (error) {
-    throw Error("Floor doesn't exists!");
+    if (error.message === "Internet connection not available") {
+      throw new Error("Check Network Connection...");
+    } else {
+      throw new Error("Page doesnt exists!");
+    }
   }
 };

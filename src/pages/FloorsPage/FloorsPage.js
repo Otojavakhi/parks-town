@@ -5,10 +5,14 @@ import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../FirebaseConfig";
 import { useState } from "react";
+import { useEffect } from "react";
+import { Spinner } from "../../components/Spinner/Spinner.js";
+import { FloorsError } from "./FloorsError";
 
 export default function FloorsPage() {
   // const { build } = useParams();
   const { building } = useLoaderData();
+  const { isLoading, setIsLoading } = MainUseContext();
 
   const [remainingApartments, setRemainingApartments] = useState(null);
   const [floor, setFloor] = useState(null);
@@ -18,7 +22,16 @@ export default function FloorsPage() {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
   const navigate = useNavigate();
-  // if (isLoading) return <p>loading...</p>;
+
+  // sets loading to false when data is fetched and shows spinner on UI.
+  // this setTimeOut is for testing spinner.
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      // return;
+    }, 500);
+  }, []);
 
   // sets mouse cursor coordinates
   const onMouseMove = (e) => {
@@ -74,6 +87,16 @@ export default function FloorsPage() {
     navigate(datasetFloor);
   };
 
+  // checks if building is false shows Error page on UI.
+  if (!building) return <FloorsError />;
+
+  if (isLoading)
+    return (
+      <div className="isloading">
+        <Spinner />
+      </div>
+    );
+
   return (
     <div className="main-content">
       <div className="building-left-side">
@@ -118,15 +141,32 @@ export default function FloorsPage() {
 }
 
 export const buildingLoader = async ({ params }) => {
-  const { build } = params;
+  try {
+    const { build } = params;
 
-  const colRef = collection(db, `${build}`);
-  const res = await getDocs(colRef);
+    const online = window.navigator.onLine;
 
-  const building = res.docs.map((doc) => ({
-    ...doc.data(),
-    id: doc.id,
-  }));
+    if (!online) {
+      throw new Error("Internet connection not available");
+    }
 
-  return { building };
+    const colRef = collection(db, `${build}`);
+    const snapshot = await getDocs(colRef);
+    console.log(snapshot);
+
+    if (snapshot.empty) throw Error("Page doesn't exists!");
+
+    const building = snapshot.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+
+    return { building };
+  } catch (error) {
+    if (error.message === "Internet connection not available") {
+      throw new Error("Check Network Connection...");
+    } else {
+      throw new Error("Page doesnt exists!");
+    }
+  }
 };
