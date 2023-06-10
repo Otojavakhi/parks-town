@@ -27,7 +27,10 @@ import { Contact } from "./pages/Contact/Contact";
 import FloorError from "./pages/Floor/FloorError";
 import ApartmentError from "./pages/Apartment/ApartmentError";
 import NotFound from "./pages/NotFound";
-import { Buildings } from "./pages/Buildings/Buildings";
+import {
+  Buildings,
+  buildingsCollectionLoader,
+} from "./pages/Buildings/Buildings";
 import { FloorsError } from "./pages/FloorsPage/FloorsError";
 
 /////////////////////////////////////////
@@ -39,7 +42,12 @@ const router = createBrowserRouter(
       <Route path="contact" element={<Contact />} />
 
       <Route path="choose-building" element={<FloorsLayout />}>
-        <Route index element={<Buildings />} />
+        {/* <Route index element={<Buildings />} /> */}
+        <Route
+          index
+          element={<Buildings />}
+          loader={buildingsCollectionLoader}
+        />
         <Route
           path=":build"
           element={<FloorsPage />}

@@ -6,6 +6,7 @@ const FloorsLayout = () => {
     <div className="floors-layout">
       {/* <p>breadcrumbs</p> */}
       <Breadcrumbs />
+
       <Outlet />
     </div>
   );

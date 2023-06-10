@@ -1,50 +1,153 @@
-import { collection, getDocs } from "firebase/firestore";
 import "./Building.css";
-import { Link, Outlet, useLoaderData } from "react-router-dom";
-import { MainUseContext } from "../../context/MainContext";
-import { db } from "../../FirebaseConfig";
+import {
+  Form,
+  Link,
+  Outlet,
+  useLoaderData,
+  useNavigate,
+} from "react-router-dom";
 import chooseBuilding from "../../utils/png/choose-building.png";
+import { db } from "../../FirebaseConfig";
+import { collection, getDocs } from "firebase/firestore";
+import { useState } from "react";
 
 export const Buildings = () => {
+  const [buildingCoordinates, setBuildingCoordinates] = useState({
+    x: 0,
+    y: 0,
+  });
+  const [hoveredBuilding, setHoveredBuilding] = useState(null);
+  const [leftApartments, setLeftApartments] = useState(null);
+  const [allAppartments, setAllApartments] = useState(null);
+  const buildingsData = useLoaderData();
+  // console.log(buildingCollection);
+  const navigate = useNavigate();
+
+  // console.log([...buildingCollection]);
+  const buildingFinder = (e) => {
+    const datasetBuilding = e.target.dataset.building;
+
+    navigate(datasetBuilding);
+  };
+
+  const handleMouseOver = (e) => {
+    if (!e.target.hasAttribute("data-building")) return;
+
+    console.log(e.target.getAttribute("data-building"));
+    // takes data-apartment attribute from polygon element and finds exact apartment
+    const datasetBuilding = e.target.getAttribute("data-building");
+
+    const foundBuilding = buildingsData.find(
+      (building) => building.building === datasetBuilding
+    );
+    console.log(foundBuilding);
+    // if apartment doesn't find, when it's sold just returns. avoid undefined error.
+    if (!foundBuilding) return;
+    const allAppartments = foundBuilding.floors
+      .map((floor) => floor.apartments)
+      .flat().length;
+    setAllApartments(allAppartments);
+
+    const leftApartments = foundBuilding.floors
+      .map((floor) => floor.apartments)
+      .flat()
+      .filter((apartment) => apartment.sold !== true).length;
+    console.log("apartments", leftApartments);
+    setLeftApartments(leftApartments);
+
+    if (
+      !hoveredBuilding ||
+      hoveredBuilding.building !== foundBuilding.building
+    ) {
+      setHoveredBuilding(foundBuilding);
+    }
+    // coordinates hovered element's position
+    const polygon = e.target;
+    const bbox = polygon.getBBox();
+    const centerX = bbox.x + bbox.width / 2;
+    const centerY = bbox.y;
+
+    setBuildingCoordinates({ x: centerX, y: centerY });
+  };
+
+  const handleMouseOut = () => {
+    setHoveredBuilding(null);
+  };
+
   return (
     <div className="choose-building-container">
       <div className="building-container">
         <svg
-          id="b-svg-container"
+          id="c-b-svg-container"
           viewBox="0 0 803 566"
           preserveAspectRatio="none"
+          onClick={buildingFinder}
+          onMouseOver={handleMouseOver}
+          onMouseOut={handleMouseOut}
         >
-          <Link to="building1">
-            <polygon
-              className="poly-fill"
-              points="87,237,71,162,114,150,117,144,214,114,240,111,243,116,248,117,254,135,251,138,256,152,252,157,253,159,255,160,258,169,256,171,258,180,263,179,269,196,241,205,241,210,175,230,170,214"
-            ></polygon>
-          </Link>
-          <Link to="building2">
-            <polygon
-              className="poly-fill"
-              points="310,185,335,181,333,174,355,171,357,169,371,167,372,174,394,170,394,163,403,162,405,169,434,166,434,158,454,157,452,144,495,139,492,98,494,97,491,66,486,68,482,38,461,42,461,46,451,47,449,44,420,47,419,75,403,78,402,71,362,75,362,82,345,84,343,79,298,84"
-            ></polygon>
-          </Link>
+          {buildingsData.map((building) => {
+            return (
+              <polygon
+                key={building.id}
+                data-building={building.building}
+                className="poly-fill"
+                points={building.buildingPolypoints}
+              ></polygon>
+            );
+          })}
         </svg>
 
         <img src={chooseBuilding} alt="choose-building" />
+        {hoveredBuilding && (
+          <div
+            className="coord-div"
+            style={{
+              left: buildingCoordinates.x + 5,
+              top: buildingCoordinates.y - 70,
+            }}
+          >
+            <span className="apartment-poly-text">
+              {hoveredBuilding.building}
+            </span>
+            <span className="apartment-poly-text">
+              {`სულ ბინები: ${allAppartments}`}
+            </span>
+            <span className="apartment-poly-text">
+              {`დარჩენილი ბინები: ${leftApartments}`}
+            </span>
+          </div>
+        )}
       </div>
       <Outlet />
     </div>
   );
 };
 
-// export const buildingLoader = async () => {
-//   try {
-//     const colRef = collection(db, "building2");
-//     const res = await getDocs(colRef);
-//     const building = res.docs.map((doc) => ({
-//       ...doc.data(),
-//       id: doc.id,
-//     }));
-//     return building;
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// };
+export const buildingsCollectionLoader = async () => {
+  try {
+    const colRef = collection(db, "buildings");
+    const snapshot = await getDocs(colRef);
+
+    let buildingsData = [];
+
+    if (!snapshot.empty) {
+      buildingsData = snapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      console.log("buuildings", buildingsData);
+    }
+
+    console.log(buildingsData);
+    return buildingsData;
+  } catch (error) {
+    // catch (error) {
+    //   if (error.message === "Internet connection not available") {
+    //     throw new Error("Check Network Connection...");
+    //   } else {
+    //     throw new Error("Page doesnt exists!");
+    //   }
+    // }
+    console.log(error.message);
+  }
+};

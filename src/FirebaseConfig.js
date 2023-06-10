@@ -15,4 +15,4 @@ export const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);
 export const storage = getStorage();
-export const colRef = collection(db, "building1");
+export const colRef = collection(db, "buildings");

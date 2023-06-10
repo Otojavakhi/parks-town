@@ -10,8 +10,11 @@
   position: relative;
 }
 
-#b-svg-container {
+#c-b-svg-container {
   position: absolute;
+}
+#c-b-svg-container polygon {
+  cursor: pointer;
 }
 
 .building-container img {

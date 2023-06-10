@@ -13,6 +13,8 @@ import { useEffect } from "react";
 import FloorError from "./FloorError";
 import { useState } from "react";
 import { Spinner } from "../../components/Spinner/Spinner.js";
+import { buildingLoader } from "../FloorsPage/FloorsPage";
+import { getDownloadURL } from "firebase/storage";
 
 export const FloorDetails = () => {
   const { fl } = useParams();
@@ -32,16 +34,11 @@ export const FloorDetails = () => {
 
   // loads apartment's images from firebase
   useEffect(() => {
-    const imageUrl = floor.floorImg;
-    getImgUrl(imageUrl);
-  }, [floor.floorImg, getImgUrl]);
-
-  useEffect(() => {
     setIsLoading(true);
-    setTimeout(() => {
+    const imageUrl = floor.floorImg;
+    getImgUrl(imageUrl).then(() => {
       setIsLoading(false);
-      // return;
-    }, 500);
+    });
   }, []);
 
   if (!floor) return <FloorError />;
@@ -58,7 +55,7 @@ export const FloorDetails = () => {
       (apartment) =>
         apartment.apartment === datasetApartment && apartment.sold !== true
     );
-
+    console.log(foundApartment);
     // if apartment doesn't find, when it's sold just returns. avoid undefined error.
     if (!foundApartment) return;
 
@@ -125,7 +122,7 @@ export const FloorDetails = () => {
                   apartment.sold ? "sold-apartment" : ""
                 }`}
                 key={apartment.apartment}
-                points={apartment.polypoints}
+                points={apartment.apartmentPolypoints}
                 data-apartment={apartment.apartment}
               ></polygon>
             );
@@ -152,39 +149,50 @@ export const FloorDetails = () => {
     </div>
   );
 };
+// const getFloorImageUrl = async (urlLink) => {
+//   const { getImgUrl } = MainUseContext();
+//   const imageUrl = await getImgUrl(urlLink); // Example path to the image file in Firebase Storage
+//   return imageUrl;
+// };
 
 // Loads floor data from firebase
 export const floorDetailLoader = async ({ params }) => {
-  const { fl, build } = params;
-
-  const colRef = collection(db, `${build}`);
-
-  const q = query(colRef, where("floor", "==", fl));
-
   try {
-    // checks users Network online status
-    const online = window.navigator.onLine;
+    const { fl, build } = params;
 
-    if (!online) {
-      throw new Error("Internet connection not available");
-    }
+    const { building } = await buildingLoader({ params });
 
-    const snapshot = await getDocs(q);
-
-    // checks if data is arrived otherwise throws an error.
-    if (snapshot.empty) throw Error("Page doesn't exists!");
-
-    let floor = {};
-    snapshot.docs.forEach((doc) => {
-      floor = { ...doc.data() };
-    });
+    const floor = building.floors.find((floor) => floor.floor === fl);
+    console.log("fllll", floor);
 
     return floor;
   } catch (error) {
-    if (error.message === "Internet connection not available") {
-      throw new Error("Check Network Connection...");
-    } else {
-      throw new Error("Page doesnt exists!");
-    }
+    const errorMessage =
+      error.message === "Internet connection not available"
+        ? "Check Network Connection..."
+        : "Page doesnt exists!";
+    throw Error(errorMessage);
   }
 };
+
+// const colRef = collection(db, `${build}`);
+
+// const q = query(colRef, where("floor", "==", fl));
+// // checks users Network online status
+// const online = window.navigator.onLine;
+
+// if (!online) {
+//   throw new Error("Internet connection not available");
+// }
+
+// const snapshot = await getDocs(q);
+
+// // checks if data is arrived otherwise throws an error.
+// if (snapshot.empty) throw Error("Page doesn't exists!");
+
+// let floor = {};
+// snapshot.docs.forEach((doc) => {
+//   floor = { ...doc.data() };
+// });
+
+// return floor;

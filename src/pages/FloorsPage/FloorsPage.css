@@ -48,7 +48,7 @@
   padding: 5px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* pointer-events: none; Prevent the tooltip from capturing mouse events */
+  pointer-events: none; /* Prevent the tooltip from capturing mouse events */
   z-index: 999; /*Set a higher z-index to ensure it appears on top of other elements */
   opacity: 1;
 }

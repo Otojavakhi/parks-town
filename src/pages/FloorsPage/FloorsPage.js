@@ -2,7 +2,7 @@ import "./FloorsPage.css";
 import buildingImg from "../../utils/png/buildingImg.png";
 import { MainUseContext } from "../../context/MainContext";
 import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../FirebaseConfig";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -12,7 +12,7 @@ import { FloorsError } from "./FloorsError";
 export default function FloorsPage() {
   // const { build } = useParams();
   const { building } = useLoaderData();
-  const { isLoading, setIsLoading } = MainUseContext();
+  const { isLoading, setIsLoading, imgUrl, getImgUrl } = MainUseContext();
 
   const [remainingApartments, setRemainingApartments] = useState(null);
   const [floor, setFloor] = useState(null);
@@ -22,17 +22,22 @@ export default function FloorsPage() {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
   const navigate = useNavigate();
+  console.log("buildingggg", building);
 
   // sets loading to false when data is fetched and shows spinner on UI.
   // this setTimeOut is for testing spinner.
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   setIsLoading(false);
+  // }, [building]);
+
   useEffect(() => {
     setIsLoading(true);
-    setTimeout(() => {
+    const imageUrl = building.buildingImg;
+    getImgUrl(imageUrl).then(() => {
       setIsLoading(false);
-      // return;
-    }, 500);
+    });
   }, []);
-
   // sets mouse cursor coordinates
   const onMouseMove = (e) => {
     const x = e.clientX;
@@ -42,11 +47,11 @@ export default function FloorsPage() {
 
   // founds hovered apartment
   const floorFounder = (datasetFloor) => {
-    const remainingApartments = building
+    const remainingApartments = building.floors
       .find((floor) => datasetFloor === floor.floor)
       ?.apartments.filter((apartment) => apartment.sold === false).length;
 
-    console.log(remainingApartments);
+    // console.log(remainingApartments);
 
     setRemainingApartments(remainingApartments);
     setFloor(datasetFloor);
@@ -123,18 +128,18 @@ export default function FloorsPage() {
           viewBox="0 0 803 566"
           preserveAspectRatio="none"
         >
-          {building.map((floor, i) => {
+          {building.floors.map((floor) => {
             return (
               <polygon
                 className="default-poly-fill"
                 key={floor.floor}
-                points={floor.polypoints}
-                data-floor={`floor-${i + 1}`}
+                points={floor.floorPolypoints}
+                data-floor={floor.floor}
               ></polygon>
             );
           })}
         </svg>
-        <img src={buildingImg} alt="შენობა-1" />
+        <img src={imgUrl} alt="შენობა-1" />
       </div>
     </div>
   );
@@ -143,6 +148,7 @@ export default function FloorsPage() {
 export const buildingLoader = async ({ params }) => {
   try {
     const { build } = params;
+    console.log("params", build);
 
     const online = window.navigator.onLine;
 
@@ -150,16 +156,33 @@ export const buildingLoader = async ({ params }) => {
       throw new Error("Internet connection not available");
     }
 
-    const colRef = collection(db, `${build}`);
-    const snapshot = await getDocs(colRef);
-    console.log(snapshot);
+    // const colRef = collection(db, `${build}`);
+    // console.log("colref", colRef);
+    // const snapshot = await getDocs(colRef);
+    // console.log(snapshot);
 
+    // if (snapshot.empty) throw Error("Page doesn't exists!");
+
+    // const building = snapshot.docs.map((doc) => ({
+    //   ...doc.data(),
+    //   id: doc.id,
+    // }));
+    // console.log("building", building);
+
+    // return { building };
+
+    const colRef = collection(db, "buildings");
+
+    const q = query(colRef, where("building", "==", build));
+    const snapshot = await getDocs(q);
+
+    // checks if data is arrived otherwise throws an error.
     if (snapshot.empty) throw Error("Page doesn't exists!");
 
-    const building = snapshot.docs.map((doc) => ({
-      ...doc.data(),
-      id: doc.id,
-    }));
+    let building = {};
+    snapshot.docs.forEach((doc) => {
+      building = { ...doc.data() };
+    });
 
     return { building };
   } catch (error) {
