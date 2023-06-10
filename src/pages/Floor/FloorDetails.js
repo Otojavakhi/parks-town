@@ -8,20 +8,20 @@ import {
 } from "react-router-dom";
 import { MainUseContext } from "../../context/MainContext";
 import { query, where, collection, getDocs } from "firebase/firestore";
-import { db } from "../../FirebaseConfig";
+import { db, storage } from "../../FirebaseConfig";
 import { useEffect } from "react";
 import FloorError from "./FloorError";
 import { useState } from "react";
 import { Spinner } from "../../components/Spinner/Spinner.js";
 import { buildingLoader } from "../FloorsPage/FloorsPage";
-import { getDownloadURL } from "firebase/storage";
+import { getDownloadURL, ref } from "firebase/storage";
 
 export const FloorDetails = () => {
   const { fl } = useParams();
   // loads data from Loader Function
   const floor = useLoaderData();
   // loads images from firebase
-  const { getImgUrl, imgUrl, isLoading, setIsLoading } = MainUseContext();
+  const { getImgUrl, setIsLoading } = MainUseContext();
 
   const navigate = useNavigate();
 
@@ -31,14 +31,21 @@ export const FloorDetails = () => {
     x: 0,
     y: 0,
   });
+  const [imgUrl, setImgUrl] = useState("");
+  const [isLoading, setLoading] = useState(true);
 
   // loads apartment's images from firebase
   useEffect(() => {
-    setIsLoading(true);
-    const imageUrl = floor.floorImg;
-    getImgUrl(imageUrl).then(() => {
-      setIsLoading(false);
-    });
+    const loadImage = async () => {
+      setIsLoading(true);
+      const imageUrl = floor.floorImg;
+      const storageRef = ref(storage, imageUrl);
+      const url = await getDownloadURL(storageRef);
+      setImgUrl(url);
+      setLoading(false);
+    };
+
+    loadImage();
   }, []);
 
   if (!floor) return <FloorError />;

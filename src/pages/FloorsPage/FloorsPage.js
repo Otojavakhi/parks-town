@@ -3,16 +3,18 @@ import buildingImg from "../../utils/png/buildingImg.png";
 import { MainUseContext } from "../../context/MainContext";
 import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "../../FirebaseConfig";
+import { db, storage } from "../../FirebaseConfig";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Spinner } from "../../components/Spinner/Spinner.js";
 import { FloorsError } from "./FloorsError";
+import { getDownloadURL, ref } from "firebase/storage";
 
 export default function FloorsPage() {
   // const { build } = useParams();
   const { building } = useLoaderData();
-  const { isLoading, setIsLoading, imgUrl, getImgUrl } = MainUseContext();
+  const { isLoading, setIsLoading, getImgUrl, imgUrl, setImgUrl } =
+    MainUseContext();
 
   const [remainingApartments, setRemainingApartments] = useState(null);
   const [floor, setFloor] = useState(null);
@@ -34,9 +36,16 @@ export default function FloorsPage() {
   useEffect(() => {
     setIsLoading(true);
     const imageUrl = building.buildingImg;
-    getImgUrl(imageUrl).then(() => {
-      setIsLoading(false);
-    });
+    const storageRef = ref(storage, imageUrl);
+    getDownloadURL(storageRef)
+      .then((url) => {
+        setImgUrl(url);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error.message);
+        setIsLoading(false);
+      });
   }, []);
   // sets mouse cursor coordinates
   const onMouseMove = (e) => {
