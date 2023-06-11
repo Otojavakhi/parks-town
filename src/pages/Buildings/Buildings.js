@@ -1,15 +1,10 @@
 import "./Building.css";
-import {
-  Form,
-  Link,
-  Outlet,
-  useLoaderData,
-  useNavigate,
-} from "react-router-dom";
+import { Outlet, useLoaderData, useNavigate } from "react-router-dom";
 import chooseBuilding from "../../utils/png/choose-building.png";
 import { db } from "../../FirebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 import { useState } from "react";
+import { BuildingError } from "./BuildingError";
 
 export const Buildings = () => {
   const [buildingCoordinates, setBuildingCoordinates] = useState({
@@ -33,26 +28,28 @@ export const Buildings = () => {
   const handleMouseOver = (e) => {
     if (!e.target.hasAttribute("data-building")) return;
 
-    console.log(e.target.getAttribute("data-building"));
     // takes data-apartment attribute from polygon element and finds exact apartment
     const datasetBuilding = e.target.getAttribute("data-building");
 
+    // Finds hovered building
     const foundBuilding = buildingsData.find(
       (building) => building.building === datasetBuilding
     );
-    console.log(foundBuilding);
-    // if apartment doesn't find, when it's sold just returns. avoid undefined error.
-    if (!foundBuilding) return;
-    const allAppartments = foundBuilding.floors
-      .map((floor) => floor.apartments)
-      .flat().length;
+
+    if (!foundBuilding) return <BuildingError />;
+
+    // Calculates all apartments on hovered building
+    const allAppartments = foundBuilding.floors.flatMap(
+      (floor) => floor.apartments
+    ).length;
+
     setAllApartments(allAppartments);
 
+    // Calculates left apartments on hovered building
     const leftApartments = foundBuilding.floors
-      .map((floor) => floor.apartments)
-      .flat()
+      .flatMap((floor) => floor.apartments)
       .filter((apartment) => apartment.sold !== true).length;
-    console.log("apartments", leftApartments);
+
     setLeftApartments(leftApartments);
 
     if (
@@ -110,10 +107,10 @@ export const Buildings = () => {
               {hoveredBuilding.building}
             </span>
             <span className="apartment-poly-text">
-              {`სულ ბინები: ${allAppartments}`}
+              {`apartments: ${allAppartments}`}
             </span>
             <span className="apartment-poly-text">
-              {`დარჩენილი ბინები: ${leftApartments}`}
+              {`left apartments: ${leftApartments}`}
             </span>
           </div>
         )}
@@ -125,6 +122,12 @@ export const Buildings = () => {
 
 export const buildingsCollectionLoader = async () => {
   try {
+    const online = window.navigator.onLine;
+
+    if (!online) {
+      throw new Error("Internet connection not available");
+    }
+
     const colRef = collection(db, "buildings");
     const snapshot = await getDocs(colRef);
 
@@ -135,19 +138,14 @@ export const buildingsCollectionLoader = async () => {
         ...doc.data(),
         id: doc.id,
       }));
-      console.log("buuildings", buildingsData);
     }
+    if (!buildingsData) throw Error("Building not found!");
 
-    console.log(buildingsData);
     return buildingsData;
   } catch (error) {
-    // catch (error) {
-    //   if (error.message === "Internet connection not available") {
-    //     throw new Error("Check Network Connection...");
-    //   } else {
-    //     throw new Error("Page doesnt exists!");
-    //   }
-    // }
-    console.log(error.message);
+    if (error.message === "Internet connection not available")
+      throw new Error("Check Network Connection...");
+
+    throw new Error("Building not found!");
   }
 };

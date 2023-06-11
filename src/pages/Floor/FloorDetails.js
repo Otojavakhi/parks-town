@@ -1,14 +1,7 @@
 import "./FloorDetail.css";
-import {
-  Link,
-  Navigate,
-  useLoaderData,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { MainUseContext } from "../../context/MainContext";
-import { query, where, collection, getDocs } from "firebase/firestore";
-import { db, storage } from "../../FirebaseConfig";
+import { storage } from "../../FirebaseConfig";
 import { useEffect } from "react";
 import FloorError from "./FloorError";
 import { useState } from "react";
@@ -21,7 +14,7 @@ export const FloorDetails = () => {
   // loads data from Loader Function
   const floor = useLoaderData();
   // loads images from firebase
-  const { getImgUrl, setIsLoading } = MainUseContext();
+  const { setIsLoading } = MainUseContext();
 
   const navigate = useNavigate();
 
@@ -46,7 +39,7 @@ export const FloorDetails = () => {
     };
 
     loadImage();
-  }, []);
+  }, [setIsLoading, floor.floorImg]);
 
   if (!floor) return <FloorError />;
 
@@ -54,7 +47,6 @@ export const FloorDetails = () => {
   const handleMouseOver = (e) => {
     if (!e.target.hasAttribute("data-apartment")) return;
 
-    console.log(e.target.getAttribute("data-apartment"));
     // takes data-apartment attribute from polygon element and finds exact apartment
     const datasetApartment = e.target.getAttribute("data-apartment");
 
@@ -62,7 +54,6 @@ export const FloorDetails = () => {
       (apartment) =>
         apartment.apartment === datasetApartment && apartment.sold !== true
     );
-    console.log(foundApartment);
     // if apartment doesn't find, when it's sold just returns. avoid undefined error.
     if (!foundApartment) return;
 
@@ -156,50 +147,31 @@ export const FloorDetails = () => {
     </div>
   );
 };
-// const getFloorImageUrl = async (urlLink) => {
-//   const { getImgUrl } = MainUseContext();
-//   const imageUrl = await getImgUrl(urlLink); // Example path to the image file in Firebase Storage
-//   return imageUrl;
-// };
 
 // Loads floor data from firebase
 export const floorDetailLoader = async ({ params }) => {
   try {
-    const { fl, build } = params;
+    const { fl } = params;
+
+    const online = window.navigator.onLine;
+
+    if (!online) {
+      throw new Error("Internet connection not available");
+    }
 
     const { building } = await buildingLoader({ params });
 
     const floor = building.floors.find((floor) => floor.floor === fl);
-    console.log("fllll", floor);
 
+    if (!floor) {
+      throw new Error("Floor doesn't exist!");
+    }
     return floor;
   } catch (error) {
     const errorMessage =
       error.message === "Internet connection not available"
         ? "Check Network Connection..."
-        : "Page doesnt exists!";
+        : "Floor doesn't exists!";
     throw Error(errorMessage);
   }
 };
-
-// const colRef = collection(db, `${build}`);
-
-// const q = query(colRef, where("floor", "==", fl));
-// // checks users Network online status
-// const online = window.navigator.onLine;
-
-// if (!online) {
-//   throw new Error("Internet connection not available");
-// }
-
-// const snapshot = await getDocs(q);
-
-// // checks if data is arrived otherwise throws an error.
-// if (snapshot.empty) throw Error("Page doesn't exists!");
-
-// let floor = {};
-// snapshot.docs.forEach((doc) => {
-//   floor = { ...doc.data() };
-// });
-
-// return floor;

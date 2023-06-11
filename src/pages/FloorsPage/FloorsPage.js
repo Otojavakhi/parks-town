@@ -1,7 +1,6 @@
 import "./FloorsPage.css";
-import buildingImg from "../../utils/png/buildingImg.png";
 import { MainUseContext } from "../../context/MainContext";
-import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db, storage } from "../../FirebaseConfig";
 import { useState } from "react";
@@ -11,10 +10,8 @@ import { FloorsError } from "./FloorsError";
 import { getDownloadURL, ref } from "firebase/storage";
 
 export default function FloorsPage() {
-  // const { build } = useParams();
   const { building } = useLoaderData();
-  const { isLoading, setIsLoading, getImgUrl, imgUrl, setImgUrl } =
-    MainUseContext();
+  const { isLoading, setIsLoading, imgUrl, setImgUrl } = MainUseContext();
 
   const [remainingApartments, setRemainingApartments] = useState(null);
   const [floor, setFloor] = useState(null);
@@ -24,14 +21,6 @@ export default function FloorsPage() {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
   const navigate = useNavigate();
-  console.log("buildingggg", building);
-
-  // sets loading to false when data is fetched and shows spinner on UI.
-  // this setTimeOut is for testing spinner.
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   setIsLoading(false);
-  // }, [building]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -46,7 +35,7 @@ export default function FloorsPage() {
         console.log(error.message);
         setIsLoading(false);
       });
-  }, []);
+  }, [setIsLoading, setImgUrl, building.buildingImg]);
   // sets mouse cursor coordinates
   const onMouseMove = (e) => {
     const x = e.clientX;
@@ -73,7 +62,6 @@ export default function FloorsPage() {
     if (!e.target.hasAttribute("data-floor")) return;
 
     const datasetFloor = e.target.dataset.floor;
-    console.log("dataset", datasetFloor);
 
     floorFounder(datasetFloor);
     setIsHovered(true);
@@ -113,20 +101,8 @@ export default function FloorsPage() {
 
   return (
     <div className="main-content">
-      <div className="building-left-side">
-        {isHovered && (
-          <div
-            className={`floor-info ${isHovered ? "active" : ""}`}
-            style={{
-              top: cursorPosition.y + -15 + "px",
-              left: cursorPosition.x + 35 + "px",
-            }}
-          >
-            <p>floor: {floor}</p>
-            <p>Remaining Apartments: {remainingApartments}</p>
-          </div>
-        )}
-        <p>search</p>
+      <div className="search-layout">
+        <form></form>
       </div>
       <div className="main-right-building">
         <svg
@@ -150,6 +126,20 @@ export default function FloorsPage() {
         </svg>
         <img src={imgUrl} alt="შენობა-1" />
       </div>
+      <div>
+        {isHovered && (
+          <div
+            className={`floor-info ${isHovered ? "active" : ""}`}
+            style={{
+              top: cursorPosition.y + -15 + "px",
+              left: cursorPosition.x - 220 + "px",
+            }}
+          >
+            <p>floor: {floor}</p>
+            <p>Remaining Apartments: {remainingApartments}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -157,7 +147,6 @@ export default function FloorsPage() {
 export const buildingLoader = async ({ params }) => {
   try {
     const { build } = params;
-    console.log("params", build);
 
     const online = window.navigator.onLine;
 
@@ -165,28 +154,13 @@ export const buildingLoader = async ({ params }) => {
       throw new Error("Internet connection not available");
     }
 
-    // const colRef = collection(db, `${build}`);
-    // console.log("colref", colRef);
-    // const snapshot = await getDocs(colRef);
-    // console.log(snapshot);
-
-    // if (snapshot.empty) throw Error("Page doesn't exists!");
-
-    // const building = snapshot.docs.map((doc) => ({
-    //   ...doc.data(),
-    //   id: doc.id,
-    // }));
-    // console.log("building", building);
-
-    // return { building };
-
     const colRef = collection(db, "buildings");
 
     const q = query(colRef, where("building", "==", build));
     const snapshot = await getDocs(q);
 
     // checks if data is arrived otherwise throws an error.
-    if (snapshot.empty) throw Error("Page doesn't exists!");
+    if (snapshot.empty) throw Error("Something went wrong!");
 
     let building = {};
     snapshot.docs.forEach((doc) => {
@@ -195,10 +169,9 @@ export const buildingLoader = async ({ params }) => {
 
     return { building };
   } catch (error) {
-    if (error.message === "Internet connection not available") {
+    if (error.message === "Internet connection not available")
       throw new Error("Check Network Connection...");
-    } else {
-      throw new Error("Page doesnt exists!");
-    }
+
+    throw new Error("Building doesn't exists!");
   }
 };

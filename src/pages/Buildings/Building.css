@@ -40,3 +40,21 @@
     max-height: 400px;
   }
 } */
+.coord-div {
+  position: absolute;
+  background-color: #2488a6;
+  padding: 5px;
+  border: none;
+}
+
+.coord-div::before {
+  content: "";
+  position: absolute;
+  bottom: -8px; /* Adjust the distance from the bottom */
+  left: calc(50% - 10px); /* Adjust the horizontal position */
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #2488a6; /* Match the background color of the coord-div */
+}

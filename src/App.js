@@ -32,6 +32,7 @@ import {
   buildingsCollectionLoader,
 } from "./pages/Buildings/Buildings";
 import { FloorsError } from "./pages/FloorsPage/FloorsError";
+import { BuildingError } from "./pages/Buildings/BuildingError";
 
 /////////////////////////////////////////
 
@@ -47,6 +48,7 @@ const router = createBrowserRouter(
           index
           element={<Buildings />}
           loader={buildingsCollectionLoader}
+          errorElement={<BuildingError />}
         />
         <Route
           path=":build"

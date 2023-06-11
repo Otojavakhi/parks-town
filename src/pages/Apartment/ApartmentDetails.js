@@ -1,18 +1,15 @@
 import "./Apartmentdetails.css";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { floorDetailLoader } from "../Floor/FloorDetails";
 import { useState } from "react";
 import { useEffect } from "react";
 import { getDownloadURL, ref } from "firebase/storage";
 import { storage } from "../../FirebaseConfig";
 import { Spinner } from "../../components/Spinner/Spinner";
-import { MainUseContext } from "../../context/MainContext";
 
 export const ApartmentDetails = () => {
-  const { apart } = useParams();
   // Loads apartment's data from floors loader function
   const apartment = useLoaderData();
-  const { isLoading, setIsLoading } = MainUseContext();
 
   // Changes apartment's images from visual to drawing.
   const [visual, setVisual] = useState(false);
@@ -36,7 +33,7 @@ export const ApartmentDetails = () => {
       }
     };
     getApartmentImages();
-  }, [visual]);
+  }, [visual, apartment.drawImg, apartment.visualImg]);
 
   if (initialLoading)
     return (
@@ -68,13 +65,17 @@ export const ApartmentDetails = () => {
 };
 
 export const apartmentDetailsLoader = async ({ params }) => {
-  const { apart } = params;
+  try {
+    const { apart } = params;
 
-  const floor = await floorDetailLoader({ params });
+    const floor = await floorDetailLoader({ params });
 
-  const apartment = floor.apartments.find((ap) => ap.apartment === apart);
+    const apartment = floor.apartments.find((ap) => ap.apartment === apart);
 
-  if (!apartment) throw Error("Apartment doesn't exists!");
+    if (!apartment) throw Error("Apartment doesn't exists!");
 
-  return apartment;
+    return apartment;
+  } catch (error) {
+    throw Error("Apartment doesn't exists!");
+  }
 };

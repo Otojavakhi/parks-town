@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
+import "./Contact.css";
 export const Contact = () => {
   return (
     <div className="contact">
-      <h1>contact us</h1>
+      <div class="box">
+        <div class="triangle"></div>
+        <p>This is a div box with a triangle.</p>
+      </div>
     </div>
   );
 };

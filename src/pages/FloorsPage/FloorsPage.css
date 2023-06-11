@@ -14,7 +14,7 @@
   position: absolute;
 }
 
-.building-left-side {
+.search-layout {
   border-right: 1px solid #e5e5e5;
   position: relative;
 }
@@ -62,4 +62,29 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+/* sets triangle on the left side of the floor-info */
+.floor-info {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(18, 73, 118);
+  padding: 5px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+  z-index: 999;
+  opacity: 1;
+}
+
+.floor-info::before {
+  content: "";
+  position: absolute;
+  bottom: 30%;
+  left: 105%;
+  transform: translateX(-90%) rotate(90deg);
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 10px solid rgb(18, 73, 118);
 }
