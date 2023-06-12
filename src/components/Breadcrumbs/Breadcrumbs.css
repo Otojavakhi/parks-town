@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Geologica:wght@800&family=Open+Sans:wght@300&display=swap");
+
 .bread-crumbs {
   width: 100%;
   display: flex;
@@ -7,26 +9,52 @@
   /* border-bottom: 2px solid #d7d7d8;
   border-right: 2px solid #d7d7d8;
   border-left: 2px solid #d7d7d8; */
-  background-color: rgb(204, 215, 215);
+  background-color: #ececec;
 
   padding: 15px;
 }
 
 .bread-crumbs > * {
-  display: inline-block;
-  margin-right: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0px 10px;
+}
+
+/* .bread-crumbs .crumb {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+} */
+
+.bread-crumbs .crumb-link {
+  margin: 0px 30px 0px 10px;
+  position: relative;
 }
 
 .bread-crumbs .crumb:after {
-  content: ">";
   margin-left: 10px;
 }
 
 .bread-crumbs .crumb:last-child:after {
   display: none;
 }
+
+.link-icons {
+  color: rgb(134, 169, 189);
+  font-size: 20px;
+}
+
+.next-icon {
+  /* left: 50%; */
+  color: rgb(77, 118, 102);
+  margin: 0px 4px;
+}
+
 .bread-crumbs .crumb a {
-  font-family: "BPG Nino Mtavruli", sans-serif;
+  font-family: "Geologica", sans-serif;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
   text-decoration: none;
-  color: rgb(85, 156, 85);
+  color: rgb(14, 78, 57);
 }

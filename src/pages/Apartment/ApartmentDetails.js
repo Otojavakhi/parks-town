@@ -48,10 +48,32 @@ export const ApartmentDetails = () => {
           <h3>ფასი</h3>
           <p> {apartment.price} $</p>
         </div>
-        <h4>ბინის ფართი: {apartment.square}</h4>
-        <h4>საცხოვრებელი ფართი: {apartment.livingSquare}</h4>
-        <h4>აივანი: {apartment.balcony}</h4>
-        <h4>ხედი: {apartment.view}</h4>
+        <div className="apartment-details-info">
+          <span className="info-display">
+            <h4>ბინა</h4>
+            <span>{apartment.apartment.slice(-1)}</span>
+          </span>
+          <span className="info-display">
+            <h4>სართული</h4>
+            <span>{apartment.floor.slice(-1)}</span>
+          </span>
+          <span className="info-display">
+            <h4>ბინის ფართი</h4>
+            <span>{apartment.square}</span>
+          </span>
+          <span className="info-display">
+            <h4>საცხოვრებელი ფართი</h4>
+            <span>{apartment.livingSquare}</span>
+          </span>
+          <span className="info-display">
+            <h4>აივანი</h4>
+            <span>{apartment.balcony}</span>
+          </span>
+          <span className="info-display">
+            <h4>ხედი</h4>
+            <span>{apartment.view}</span>
+          </span>
+        </div>
       </div>
       <div className="apartment-imgs">
         <button onClick={() => setVisual(!visual)}>

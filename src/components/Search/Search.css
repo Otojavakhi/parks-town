@@ -1,3 +1,8 @@
+.search-container {
+  background-color: rgb(214, 214, 214);
+  height: 510px;
+}
+
 .found-apartments-list {
   margin: 0px 40px;
 }
@@ -45,12 +50,9 @@
 }
 
 #minSquare {
-  margin: 30px 15px;
+  margin: 30px 12px;
 }
 
-#maxSquare {
-  margin: 0px 10px;
-}
 .search-submit {
   cursor: pointer;
   padding: 3px;

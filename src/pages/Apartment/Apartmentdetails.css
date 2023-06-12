@@ -1,6 +1,6 @@
 .apartment-details {
   display: grid;
-  grid-template-columns: 500px 1fr;
+  grid-template-columns: 600px 1fr;
   margin: 0 80px;
   background-color: #fff;
   padding: 20px;
@@ -11,7 +11,7 @@
 }
 
 .apartment-price {
-  background-color: rgb(228, 222, 215);
+  background-color: rgb(220, 219, 219);
   padding: 15px;
   margin-bottom: 15px;
 }
@@ -35,4 +35,16 @@
   left: 40px;
   padding: 7px 12px;
   cursor: pointer;
+}
+
+.apartment-details-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  height: 250px;
+}
+
+.apartment-details-info > * {
+  margin: 10px 30px 10px 50px;
+  color: rgb(59, 59, 59);
 }
