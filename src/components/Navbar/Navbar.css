@@ -2,11 +2,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
   width: 100%;
   background-color: #fff;
   padding: 1.2rem;
   border-bottom: 1px solid #e5e5e5;
+  box-sizing: border-box;
 }
 
 .nav-content {
@@ -75,13 +75,18 @@
 
 @media only screen and (max-width: 1148px) {
   .nav-container {
+    position: fixed;
+    top: 0;
+    max-width: 100%;
     padding: 0.4rem;
     min-height: 70px;
   }
+
   .nav-container .nav-btn {
     display: block;
     margin: 10px 2.5rem 0px 0px;
     font-size: 1.8rem;
+    z-index: 1;
   }
 
   .logo {
@@ -102,6 +107,7 @@
     box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
     padding: 40px 0 0 10px;
     transition: 0.3s ease-in-out;
+    z-index: 1; /* Add z-index property to ensure it appears above other elements */
   }
 
   .active {
@@ -118,6 +124,7 @@
     right: -300px;
     margin-right: 8rem;
     transition: 0.3s ease-in-out;
+    z-index: 1; /* Add z-index property to ensure it appears above other elements */
   }
 
   .active {

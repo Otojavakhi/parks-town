@@ -22,7 +22,11 @@ export const Home = () => {
         </Link>
       </div>
       <Link to="choose-building">
-        <img src={chooseBuilding} alt="choose" />
+        <img
+          className="choose-building-img"
+          src={chooseBuilding}
+          alt="choose"
+        />
       </Link>
     </div>
   );
