@@ -8,10 +8,13 @@ import { useEffect } from "react";
 import { Spinner } from "../../components/Spinner/Spinner.js";
 import { FloorsError } from "./FloorsError";
 import { getDownloadURL, ref } from "firebase/storage";
+import { Search } from "../../components/Search/Search";
 
 export default function FloorsPage() {
   const { building } = useLoaderData();
-  const { isLoading, setIsLoading, imgUrl, setImgUrl } = MainUseContext();
+
+  const { isLoading, setIsLoading, imgUrl, setImgUrl, setBuildingData } =
+    MainUseContext();
 
   const [remainingApartments, setRemainingApartments] = useState(null);
   const [floor, setFloor] = useState(null);
@@ -24,6 +27,9 @@ export default function FloorsPage() {
 
   useEffect(() => {
     setIsLoading(true);
+    
+    setBuildingData(building);
+
     const imageUrl = building.buildingImg;
     const storageRef = ref(storage, imageUrl);
     getDownloadURL(storageRef)
@@ -102,7 +108,7 @@ export default function FloorsPage() {
   return (
     <div className="main-content">
       <div className="search-layout">
-        <form></form>
+        <Search />
       </div>
       <div className="main-right-building">
         <svg

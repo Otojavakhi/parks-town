@@ -14,6 +14,8 @@ export const MainContextProvider = ({ children }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [buildingData, setBuildingData] = useState(null);
+
   // get image from storage
   const [imgUrl, setImgUrl] = useState("");
 
@@ -61,6 +63,8 @@ export const MainContextProvider = ({ children }) => {
         getImgUrl,
         floor,
         setFloor,
+        buildingData,
+        setBuildingData,
       }}
     >
       {children}
