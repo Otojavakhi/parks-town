@@ -6,7 +6,8 @@
   background-color: #fff;
   padding: 1.2rem;
   border-bottom: 1px solid #e5e5e5;
-  /* box-sizing: border-box; */
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 .nav-content {
@@ -58,7 +59,7 @@
 }
 
 .logo {
-  margin: 25px 25px 0px 8rem;
+  margin: 25px 25px 0px 2rem;
   max-width: 14rem;
   max-height: 14rem;
 }
@@ -78,6 +79,7 @@
     padding: 0.4rem;
     min-height: 70px;
     width: 100%;
+    box-sizing: border-box;
   }
 
   .nav-container .nav-btn {
@@ -86,7 +88,9 @@
     font-size: 1.8rem;
   }
   .logo {
-    margin: 10px 0 0 6rem;
+    width: 7rem;
+    height: 20px;
+    margin: 10px 0 0 4rem;
   }
 
   .nav-list {

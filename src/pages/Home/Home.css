@@ -1,4 +1,5 @@
 .main-choose-building {
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 0 60px;
@@ -51,6 +52,10 @@
     margin: 20px 0px 12rem 0px;
   }
 
+  .main-title h2 {
+    font-size: 20px;
+  }
+
   .main-paragraph {
     color: #888888;
     max-width: 400px; /* Change width to max-width */
@@ -59,5 +64,11 @@
 
   .choose-building-img {
     width: 100%;
+  }
+
+  .choose-building {
+    padding: 10px;
+    width: 80px;
+    font-size: 10px;
   }
 }
