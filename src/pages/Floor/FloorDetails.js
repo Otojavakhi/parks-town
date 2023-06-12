@@ -129,14 +129,14 @@ export const FloorDetails = () => {
         <img src={imgUrl} alt={`სართული-${fl}`} />
         {hoveredApartment && (
           <div
-            className="coord-div"
+            className="apartment-coord-div"
             style={{
-              left: apartmentCoordinates.x + 5,
-              top: apartmentCoordinates.y - 50,
+              left: apartmentCoordinates.x - 40,
+              top: apartmentCoordinates.y - 85,
             }}
           >
             <span className="apartment-poly-text">
-              {hoveredApartment.apartment}
+              ბინა {hoveredApartment.apartment.slice(-1)}
             </span>
             <span className="apartment-poly-text">
               {`${hoveredApartment.square} m2`}

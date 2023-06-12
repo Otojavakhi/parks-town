@@ -1,12 +1,13 @@
 .apartment-details {
   display: grid;
-  grid-template-columns: 600px 1fr;
+  grid-template-columns: 0.8fr 1fr;
   margin: 0 80px;
   background-color: #fff;
   padding: 20px;
 }
 
 .apartment-description {
+  background-color: rgb(229, 229, 229);
   border-right: 1px solid #e5e5e5;
 }
 

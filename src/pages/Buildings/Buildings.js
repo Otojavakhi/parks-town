@@ -104,13 +104,13 @@ export const Buildings = () => {
             }}
           >
             <span className="apartment-poly-text">
-              {hoveredBuilding.building}
+              შენობა {hoveredBuilding.building.slice(-1)}
             </span>
             <span className="apartment-poly-text">
-              {`apartments: ${allAppartments}`}
+              ბინები: {allAppartments}
             </span>
             <span className="apartment-poly-text">
-              {`left apartments: ${leftApartments}`}
+              დარჩენილი ბინები: {leftApartments}
             </span>
           </div>
         )}

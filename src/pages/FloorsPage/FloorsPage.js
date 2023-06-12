@@ -27,7 +27,7 @@ export default function FloorsPage() {
 
   useEffect(() => {
     setIsLoading(true);
-    
+
     setBuildingData(building);
 
     const imageUrl = building.buildingImg;
@@ -141,8 +141,8 @@ export default function FloorsPage() {
               left: cursorPosition.x - 220 + "px",
             }}
           >
-            <p>floor: {floor}</p>
-            <p>Remaining Apartments: {remainingApartments}</p>
+            <p>სართული {floor.slice(-1)}</p>
+            <p>დარჩენილი ბინები: {remainingApartments}</p>
           </div>
         )}
       </div>

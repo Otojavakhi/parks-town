@@ -45,6 +45,8 @@
   background-color: #2488a6;
   padding: 5px;
   border: none;
+  /* height: 150px; */
+  width: 200px;
 }
 
 .coord-div::before {

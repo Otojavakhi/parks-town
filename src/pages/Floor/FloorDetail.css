@@ -38,7 +38,33 @@
 }
 
 .apartment-poly-text {
+  height: 25px;
+  width: 200px;
   font-size: 1rem;
   overflow: hidden;
-  color: rgb(123, 63, 63);
+  color: rgb(75, 71, 71);
+}
+
+.apartment-coord-div {
+  position: absolute;
+  background-color: #2488a6;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  height: 4rem;
+  display: flex;
+  flex-direction: column;
+  width: 7rem;
+}
+
+.apartment-coord-div::before {
+  content: "";
+  position: absolute;
+  bottom: -8px; /* Adjust the distance from the bottom */
+  left: calc(50% - 10px); /* Adjust the horizontal position */
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #2488a6; /* Match the background color of the coord-div */
 }
