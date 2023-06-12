@@ -41,7 +41,6 @@ export const Navbar = () => {
             <AiOutlineInstagram className="nav-icon nav-icon-instagram" />
           </a>
         </div>
-        {/* <TfiAlignJustify /> */}
       </div>
 
       <div className="nav-mobile-icons" onClick={() => setClicked(!clicked)}>
