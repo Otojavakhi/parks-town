@@ -18,28 +18,34 @@ export const Navbar = () => {
       <div className="nav-content">
         <div className="nav-links">
           <ul className={clicked ? "nav-list active" : "nav-list"}>
-            <NavLink to="project">პროექტის შესახებ</NavLink>
-            <NavLink to="contact">კონტაქტი</NavLink>
-            <NavLink to="blog">ბლოგი</NavLink>
+            <NavLink className="nav-link" to="project">
+              პროექტის შესახებ
+            </NavLink>
+            <NavLink className="nav-link" to="contact">
+              კონტაქტი
+            </NavLink>
+            <NavLink className="nav-link" to="blog">
+              ბლოგი
+            </NavLink>
+            <div className="nav-icons">
+              <a
+                className="nav-icon-link"
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <CiFacebook className="nav-icon" />
+              </a>
+              <a
+                className="nav-icon-link"
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <AiOutlineInstagram className="nav-icon nav-icon-instagram" />
+              </a>
+            </div>
           </ul>
-        </div>
-        <div className={clicked ? "nav-icons active" : "nav-icons"}>
-          <a
-            className="nav-icon-link"
-            href="https://www.facebook.com/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <CiFacebook className="nav-icon" />
-          </a>
-          <a
-            className="nav-icon-link"
-            href="https://www.instagram.com/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <AiOutlineInstagram className="nav-icon nav-icon-instagram" />
-          </a>
         </div>
       </div>
 

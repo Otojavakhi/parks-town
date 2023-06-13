@@ -4,7 +4,7 @@
   align-items: center;
   width: 100%;
   background-color: #fff;
-  padding: 1.2rem;
+  padding: 1rem;
   border-bottom: 1px solid #e5e5e5;
   box-sizing: border-box;
   max-width: 100%;
@@ -16,7 +16,7 @@
 }
 
 .nav-links {
-  margin-top: 30px;
+  /* margin-top: 30px; */
   margin-right: 6rem;
   display: flex;
   justify-content: space-between;
@@ -30,23 +30,25 @@
 }
 
 .nav-icons {
-  margin: 0px 0px 0px 4rem;
+  margin: 25px 0px 0px 4rem;
 }
 
 .nav-icon-instagram {
-  margin: 0 0px 0 0.5rem;
+  margin: 0 0 0 0.5rem;
 }
 
 .nav-list {
+  display: flex;
+  flex-direction: row;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.nav-list a {
+.nav-list .nav-link {
   text-decoration: none;
-  margin: 0 5px;
-  padding: 26px;
+  margin: 0 35px;
+  padding: 26px 0px;
   font-size: 1.2rem;
   color: #888888;
   font-family: "BPG Nino Mtavruli", sans-serif;
@@ -62,7 +64,7 @@
 }
 
 .logo {
-  margin: 25px 25px 0px 2rem;
+  margin: 0px 25px 0px 6rem;
   max-width: 14rem;
   max-height: 14rem;
 }
@@ -79,8 +81,10 @@
 
 @media only screen and (max-width: 1148px) {
   .nav-container {
+    position: fixed;
+    top: 0;
     padding: 0.4rem;
-    min-height: 70px;
+    min-height: 90px;
     width: 100%;
     box-sizing: border-box;
   }
@@ -97,20 +101,28 @@
   }
 
   .nav-list {
-    position: relative;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
     position: fixed;
-    top: 69px;
-    right: -300px;
-    width: 250px;
+    top: 90px;
+    right: -40%;
+    width: 40%;
     height: 100vh;
-    background-color: #2a3239;
+    background-color: #dedede;
     box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
     padding: 60px 0 0 10px;
     transition: 0.3s ease-in-out;
+    list-style: none;
+    margin: 0;
+    padding: 40px 0px;
+    overflow-y: auto; /* Add this line */
+    max-height: calc(100vh - 50px); /* Adjust the value as needed */
+  }
+
+  .nav-list .nav-link {
+    font-size: 0.9rem;
   }
 
   .active {
@@ -118,24 +130,12 @@
   }
 
   .nav-icons {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: row;
-    position: fixed;
-    bottom: 20%;
-    right: -300px;
-    margin-right: 10rem;
-    transition: 0.3s ease-in-out;
-  }
-
-  .active {
-    right: 0px;
+    margin: 4rem 2rem;
   }
 
   .nav-close-btn {
     position: fixed;
-    top: 75px;
+    top: 90px;
     right: -20px;
   }
 }
