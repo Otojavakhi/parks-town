@@ -49,14 +49,17 @@
   .intro {
     height: 200px;
     width: 100%;
-    margin: 20px 0px 12rem 0px;
+    margin: 20px 0px 4rem 0px;
   }
-
+  .main-title {
+    margin-bottom: 20px;
+  }
   .main-title h2 {
-    font-size: 20px;
+    font-size: 0.7rem;
   }
 
   .main-paragraph {
+    font-size: 0.6rem;
     color: #888888;
     max-width: 400px; /* Change width to max-width */
     width: 100%; /* Add width: 100% */
@@ -70,5 +73,11 @@
     padding: 10px;
     width: 80px;
     font-size: 10px;
+  }
+
+  .choose-building-link {
+    font-size: 0.6rem;
+    width: 110px;
+    padding: 0.4rem;
   }
 }
