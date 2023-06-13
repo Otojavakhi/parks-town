@@ -106,45 +106,47 @@ export default function FloorsPage() {
     );
 
   return (
-    <div className="main-content">
+    <div className="floors-page-container">
       <div className="search-layout">
         <Search />
       </div>
-      <div className="main-right-building">
-        <svg
-          onClick={handleClickFloor}
-          onMouseOver={handleMouseOver}
-          onMouseOut={handleMouseOut}
-          id="b-svg-container"
-          viewBox="0 0 803 566"
-          preserveAspectRatio="none"
-        >
-          {building.floors.map((floor) => {
-            return (
-              <polygon
-                className="default-poly-fill"
-                key={floor.floor}
-                points={floor.floorPolypoints}
-                data-floor={floor.floor}
-              ></polygon>
-            );
-          })}
-        </svg>
-        <img src={imgUrl} alt="შენობა-1" />
-      </div>
-      <div>
-        {isHovered && (
-          <div
-            className={`floor-info ${isHovered ? "active" : ""}`}
-            style={{
-              top: cursorPosition.y + -15 + "px",
-              left: cursorPosition.x - 220 + "px",
-            }}
+      <div className="choose-building-content">
+        <div className="main-right-building">
+          <svg
+            onClick={handleClickFloor}
+            onMouseOver={handleMouseOver}
+            onMouseOut={handleMouseOut}
+            id="b-svg-container"
+            viewBox="0 0 803 566"
+            preserveAspectRatio="none"
           >
-            <p>სართული {floor.slice(-1)}</p>
-            <p>დარჩენილი ბინები: {remainingApartments}</p>
-          </div>
-        )}
+            {building.floors.map((floor) => {
+              return (
+                <polygon
+                  className="default-poly-fill"
+                  key={floor.floor}
+                  points={floor.floorPolypoints}
+                  data-floor={floor.floor}
+                ></polygon>
+              );
+            })}
+          </svg>
+          <img src={imgUrl} alt="შენობა-1" />
+        </div>
+        <div>
+          {isHovered && (
+            <div
+              className={`floor-info ${isHovered ? "active" : ""}`}
+              style={{
+                top: cursorPosition.y + -23 + "px",
+                left: cursorPosition.x - 230 + "px",
+              }}
+            >
+              <p>სართული {floor.slice(-1)}</p>
+              <p>დარჩენილი ბინები: {remainingApartments}</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

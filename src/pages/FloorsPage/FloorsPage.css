@@ -1,14 +1,22 @@
-.main-content {
-  position: relative;
+.floors-page-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  padding: 0 60px;
+}
+
+.choose-building-content {
+  position: relative;
+  /* display: grid;
+  grid-template-columns: 1fr 1fr; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 20px;
   padding: 0 70px;
 }
 
 .main-right-building {
   position: relative;
-  text-align: center;
 }
 
 #b-svg-container {
@@ -26,7 +34,8 @@
 }
 
 .main-right-building img {
-  max-height: 530px;
+  max-height: 710px;
+  max-width: 710px;
 }
 
 /* .tooltip {
@@ -85,7 +94,7 @@
   content: "";
   position: absolute;
   bottom: 30%;
-  left: 105%;
+  left: 104%;
   transform: translateX(-90%) rotate(90deg);
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
