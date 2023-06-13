@@ -25,7 +25,7 @@
 .nav-icon {
   height: 30px;
   width: 30px;
-  color: gray;
+  color: #333540;
   cursor: pointer;
 }
 
@@ -75,8 +75,9 @@
   background: transparent;
   border: none;
   outline: none;
-  color: rgb(147, 147, 147);
+  color: rgb(57, 57, 57);
   display: none;
+  height: 35px;
 }
 
 @media only screen and (max-width: 1148px) {
@@ -97,7 +98,7 @@
   .logo {
     width: 7rem;
     height: 20px;
-    margin: 10px 0 0 4rem;
+    margin: 10px 0 0 55px;
   }
 
   .nav-list {
@@ -107,8 +108,8 @@
     flex-direction: column;
     position: fixed;
     top: 90px;
-    right: -40%;
-    width: 40%;
+    right: -50%;
+    width: 50%;
     height: 100vh;
     background-color: #dedede;
     box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
@@ -134,6 +135,7 @@
   }
 
   .nav-close-btn {
+    transition: 0.3s ease-in-out;
     position: fixed;
     top: 90px;
     right: -20px;
