@@ -88,6 +88,7 @@
     min-height: 90px;
     width: 100%;
     box-sizing: border-box;
+    z-index: 1;
   }
 
   .nav-container .nav-btn {

@@ -71,12 +71,14 @@
   display: flex;
   flex-direction: column;
   background-color: rgb(18, 73, 118);
-  padding: 5px;
+  padding: 5px 8px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   pointer-events: none;
   z-index: 999;
   opacity: 1;
+  max-width: 200px;
+  min-width: 200px;
 }
 
 .floor-info::before {
