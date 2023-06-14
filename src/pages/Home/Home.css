@@ -2,10 +2,12 @@
 
 .main-choose-building {
   box-sizing: border-box;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 0 60px;
-  margin-top: 30px;
+  gap: 60px;
 }
 
 .main-choose-building::before {
@@ -23,133 +25,130 @@
 .intro {
   display: flex;
   flex-direction: column;
-  margin: 20% 0 0 40px;
+  gap: 20px;
+  margin: 2rem 0 0 60px;
 }
 
 .main-paragraph {
   color: #8c8f9c;
-  width: 400px;
-  font-size: 16px;
+  max-width: 250px;
+  font-size: 10px;
   font-weight: 400;
   line-height: 26px;
 }
 
 .main-title {
   border-left: 4px solid rgba(61, 61, 70, 0.982);
-  display: inline-block;
-  margin-bottom: 40px;
-  /* margin: 10px 20px; */
 }
 
 .main-title h2 {
   margin-left: 10px;
   color: var(--main-navlink-color);
-  font-size: 24px;
+  font-size: 12px;
   font-weight: 600;
-  line-height: 24px;
+  line-height: 22px;
+  width: 300px;
   font-family: "Playfair Display", serif;
 }
 
-.choose-building-link {
-  margin-top: 30px;
-  padding: 15px;
-  width: 180px;
-  color: #f8f8f8;
+.home-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.home-buttons > * {
+  padding: 6px;
+  text-align: center;
+  width: 120px;
+  cursor: pointer;
   text-decoration: none;
-  background-color: rgb(55, 57, 67);
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 10px;
   font-weight: 400;
   line-height: 24px;
   font-family: "BPG Nino Mtavruli", sans-serif;
 }
 
-.choose-building-link:hover {
+.home-buttons > *:hover {
   box-shadow: 0 8px 20px #3c46641f;
+}
+.choose-building-link {
+  color: #f8f8f8;
+  background-color: rgb(55, 57, 67);
+}
+.contact-us {
+  color: rgb(55, 57, 67);
+  background-color: #f8f8f8;
 }
 
 .choose-building-img {
-  max-height: 550px;
+  max-height: 250px;
 }
-@media only screen and (max-width: 590px) {
-  .main-choose-building {
-    display: block;
-    position: fixed;
-    width: 100%;
-  }
-}
-@media only screen and (max-width: 1300px) {
+
+@media only screen and (min-width: 768px) {
   .main-choose-building {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-  }
-
-  .intro {
     align-items: center;
-    height: 200px;
-    width: 600px;
-    margin: 80px 0px 7rem 0px;
-  }
-  .main-title {
-    margin-bottom: 20px;
-  }
-  .main-title h2 {
-    font-size: 0.8rem;
-    min-width: 100%;
-  }
-
-  .main-paragraph {
-    font-size: 0.6rem;
-    color: #888888;
-    max-width: 250px; /* Change width to max-width */
-    width: 100%; /* Add width: 100% */
+    width: 100%;
+    gap: 60px;
   }
 
   .choose-building-img {
-    width: 100%;
+    max-height: 380px;
   }
 
-  .choose-building {
-    padding: 10px;
-    width: 80px;
-    font-size: 10px;
+  .main-paragraph {
+    max-width: 450px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 26px;
   }
 
-  .choose-building-link {
-    font-size: 0.6rem;
-    width: 130px;
-    min-width: 130px;
-    padding: 11px;
-    text-align: center;
+  .main-title h2 {
+    width: 350px;
+    font-size: 18px;
+  }
+
+  .home-buttons > * {
+    padding: 8px;
+    width: 160px;
+    font-size: 13px;
+    margin-top: 15px;
   }
 }
 
-@media only screen and (min-width: 1500px) {
+@media only screen and (min-width: 1024px) {
   .main-choose-building {
-    box-sizing: border-box;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    text-align: start;
-    padding: 0 60px;
-    margin-top: 10rem;
-    position: fixed;
-    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 2rem;
   }
 
-  .main-choose-building::before {
-    width: 100%;
+  .choose-building-img {
+    max-width: 520px;
+    max-height: 550px;
   }
 
   .intro {
-    display: block;
-    text-align: left;
-    width: 500px;
-    padding: 0px;
-    margin: 6rem 10rem;
+    max-width: 330px;
+    margin: 0 0 0 60px;
+  }
+}
+
+@media only screen and (min-width: 1248px) {
+  .intro {
+    max-width: 100%;
+    margin-bottom: 3rem;
+    gap: 30px;
   }
 
+  .choose-building-img {
+    max-width: 550px;
+  }
+
+  /* 
   .choose-building-link {
     display: block;
     margin-top: 40px;
@@ -157,14 +156,29 @@
     width: 300px;
     padding: 25px 10px;
     text-align: center;
-  }
+  } */
 
   .main-title h2 {
-    font-size: 25px;
+    display: inline;
+    font-size: 1.4rem;
+    max-width: 800px;
   }
 
   .main-paragraph {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     line-height: 30px;
+  }
+
+  .home-buttons > * {
+    padding: 12px;
+    width: 190px;
+    font-size: 16px;
+    margin-top: 15px;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .choose-building-img {
+    max-width: 750px;
   }
 }

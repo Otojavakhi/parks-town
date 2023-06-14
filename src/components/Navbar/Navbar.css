@@ -7,7 +7,7 @@
   /* padding: 1.2rem; */
   border-bottom: 1px solid #e5e5e5;
   box-sizing: border-box;
-  max-width: 100%;
+  width: 100%;
 }
 
 .nav-content {
@@ -84,9 +84,8 @@
 
 @media only screen and (max-width: 1148px) {
   .nav-container {
-    position: fixed;
-    top: 0;
-    padding: 0.4rem;
+    /* position: fixed;
+    top: 0; */
     min-height: 90px;
     width: 100%;
     box-sizing: border-box;
@@ -121,8 +120,8 @@
     list-style: none;
     margin: 0;
     padding: 40px 0px;
-    overflow-y: auto; /* Add this line */
-    max-height: calc(100vh - 50px); /* Adjust the value as needed */
+    overflow-y: auto;
+    max-height: calc(100vh - 50px);
   }
 
   .nav-list .nav-link {
@@ -157,7 +156,6 @@
   }
 
   .nav-container {
-    position: fixed;
     top: 0;
     width: 100%;
   }

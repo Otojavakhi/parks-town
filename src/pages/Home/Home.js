@@ -16,10 +16,12 @@ export const Home = () => {
             კიკვიძის პარკის მოპირდაპირე მხარეს, ცოტნე დანიანის N305-313 -ში.
           </h4>
         </span>
-
-        <Link className="choose-building-link" to="choose-building">
-          აარჩიე აპარტამენტი
-        </Link>
+        <div className="home-buttons">
+          <Link className="choose-building-link" to="choose-building">
+            აარჩიე აპარტამენტი
+          </Link>
+          <button className="contact-us">დაგვიკავშირდით</button>
+        </div>
       </div>
       <Link to="choose-building">
         <img
