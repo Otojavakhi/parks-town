@@ -1,4 +1,5 @@
 import "./Building.css";
+import leaves from "../../utils/png/leaves-scaled.webp";
 import { Outlet, useLoaderData, useNavigate } from "react-router-dom";
 import chooseBuilding from "../../utils/png/choose-building.png";
 import { db } from "../../FirebaseConfig";

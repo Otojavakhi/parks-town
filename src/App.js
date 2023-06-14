@@ -1,6 +1,5 @@
-import "./App.css";
 import { MainContextProvider } from "./context/MainContext";
-
+import "./variables.css";
 // Router
 import {
   createBrowserRouter,

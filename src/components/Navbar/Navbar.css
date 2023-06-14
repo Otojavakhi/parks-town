@@ -30,7 +30,7 @@
 }
 
 .nav-icons {
-  margin: 45px 0px 0px 4rem;
+  margin: 45px 0px 0px 8rem;
 }
 
 .nav-icon-instagram {
@@ -47,24 +47,26 @@
 
 .nav-list .nav-link {
   text-decoration: none;
-  margin: 30px 35px 0 35px;
+  margin: 30px 35px 0px 35px;
   padding: 26px 0;
-  font-size: 1.2rem;
-  color: #888888;
+  box-sizing: border-box;
+  /* font-size: 1.2rem; */
+  color: var(--main-navlink-color);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 24px;
   font-family: "BPG Nino Mtavruli", sans-serif;
 }
 
-.nav-list a:hover {
-  color: #1d84a1;
-}
-
+.nav-list .nav-link:hover,
 .nav-list a.active {
-  color: #1d84a1;
-  border-bottom: 4px solid rgb(21, 133, 135);
+  color: var(--main-navlink-color);
+  border-bottom: 4px solid var(--main-navlink-color);
+  padding-bottom: 2px;
 }
 
 .logo {
-  margin: 0px 25px 0px 6rem;
+  margin: 0px 25px 0px 7rem;
   max-width: 14rem;
   max-height: 14rem;
 }
@@ -140,5 +142,23 @@
     position: fixed;
     top: 90px;
     right: -20px;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .logo {
+    margin-left: 14rem;
+  }
+
+  .nav-icons {
+    position: absolute;
+    top: 0;
+    right: 10rem;
+  }
+
+  .nav-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
   }
 }

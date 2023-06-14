@@ -1,4 +1,5 @@
 import "./FloorsPage.css";
+import leaves from "../../utils/png/leaves-scaled.webp";
 import { MainUseContext } from "../../context/MainContext";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -133,6 +134,7 @@ export default function FloorsPage() {
           </svg>
           <img src={imgUrl} alt="შენობა-1" />
         </div>
+        {/* <img src={leaves} alt="gg" /> */}
         <div>
           {isHovered && (
             <div

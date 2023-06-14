@@ -1,6 +1,7 @@
 .search-container {
-  background-color: rgb(214, 214, 214);
-  height: 510px;
+  background-color: rgba(183, 183, 183, 0.51);
+  height: 500px;
+  border: 1px solid var(--main-navlink-color);
 }
 
 .found-apartments-list {

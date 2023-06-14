@@ -9,8 +9,8 @@
   /* border-bottom: 2px solid #d7d7d8;
   border-right: 2px solid #d7d7d8;
   border-left: 2px solid #d7d7d8; */
-  background-color: #ececec;
-
+  background-color: #d5d9e558;
+  box-shadow: 0 8px 20px #3c46641f;
   padding: 15px;
 }
 
@@ -41,20 +41,24 @@
 }
 
 .link-icons {
-  color: rgb(134, 169, 189);
+  color: rgb(88, 112, 126);
   font-size: 20px;
+  padding-top: 4px;
 }
 
 .next-icon {
   /* left: 50%; */
-  color: rgb(77, 118, 102);
-  margin: 0px 4px;
+  color: var(--main-navlink-color);
 }
 
 .bread-crumbs .crumb a {
-  font-family: "Geologica", sans-serif;
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "BPG Nino Mtavruli", sans-serif;
+  color: var(--main-navlink-color);
   text-decoration: none;
-  color: rgb(14, 78, 57);
+}
+
+.bread-crumbs .crumb a:hover {
+  color: #57575f;
 }
