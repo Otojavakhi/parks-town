@@ -6,10 +6,13 @@ import { NavLink, Link } from "react-router-dom";
 import { useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useState } from "react";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { TfiClose } from "react-icons/tfi";
 
 export const Navbar = () => {
   const [clicked, setClicked] = useState(false);
 
+  const navListClass = `nav-list${clicked ? " transition-active" : ""}`;
   return (
     <nav className="nav-container">
       <Link to="/">
@@ -52,11 +55,11 @@ export const Navbar = () => {
       <div className="nav-mobile-icons" onClick={() => setClicked(!clicked)}>
         {clicked ? (
           <button className="nav-btn nav-close-btn">
-            <FaTimes />
+            <TfiClose />
           </button>
         ) : (
           <button className="nav-btn">
-            <FaBars />
+            <RxHamburgerMenu />
           </button>
         )}
       </div>

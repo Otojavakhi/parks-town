@@ -62,3 +62,26 @@
 .bread-crumbs .crumb a:hover {
   color: #57575f;
 }
+
+@media only screen and (max-width: 768px) {
+  .bread-crumbs .crumb a {
+    font-size: 12px;
+  }
+  .bread-crumbs > * {
+    margin: 0px 6px;
+  }
+  .bread-crumbs .crumb-link {
+    margin: 0px 8px 0px 10px;
+  }
+}
+@media only screen and (max-width: 510px) {
+  .bread-crumbs .crumb a {
+    font-size: 8px;
+  }
+  .bread-crumbs > * {
+    margin: 0px 2px;
+  }
+  .bread-crumbs .crumb-link {
+    margin: 0px 4px 0px 10px;
+  }
+}

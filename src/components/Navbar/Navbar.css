@@ -4,53 +4,115 @@
   align-items: center;
   width: 100%;
   background-color: #fff;
-  /* padding: 1.2rem; */
   border-bottom: 1px solid #e5e5e5;
   box-sizing: border-box;
   width: 100%;
+  min-height: 70px;
+  z-index: 1;
 }
 
-.nav-content {
+/* .nav-container .nav-btn {
+  display: block;
+  margin: 10px 2.5rem 0px 0px;
+  font-size: 1.8rem;
+} */
+
+/* .logo {
+  width: 7rem;
+  height: 20px;
+  margin: 10px 0 0 4rem;
+} */
+
+/* .nav-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  position: fixed;
+  top: 90px;
+  right: -50%;
+  width: 50%;
+  height: 100vh;
+  background-color: #dedede;
+  box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
+  padding: 60px 0 0 10px;
+  transition: 0.3s ease-in-out;
+  list-style: none;
+  margin: 0;
+  padding: 40px 0px;
+  overflow-y: auto;
+  max-height: calc(100vh - 50px);
+} */
+
+/* .nav-list .nav-link {
+  font-size: 0.9rem;
+} */
+
+/* .active {
+  right: 0px;
+} */
+
+/* .nav-icons {
+  margin: 4rem 2rem;
+} */
+
+.nav-close-btn {
+  transition: 0.3s ease-in-out;
+  position: fixed;
+  top: 90px;
+  right: -20px;
+}
+/* ///////////////////////////////// */
+/* .nav-container {
   display: flex;
   justify-content: space-between;
-}
+  align-items: center;
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  box-sizing: border-box;
+  width: 100%;
+} */
 
-.nav-links {
-  /* margin-top: 30px; */
+/* .nav-content {
+  display: flex;
+  justify-content: space-between;
+} */
+
+/* .nav-links {
   margin-right: 6rem;
   display: flex;
   justify-content: space-between;
-}
+} */
 
 .nav-icon {
   height: 30px;
   width: 30px;
-  color: #333540;
+  color: var(--main-navlink-color);
   cursor: pointer;
 }
 
-.nav-icons {
+/* .nav-icons {
   margin: 45px 0px 0px 8rem;
-}
+} */
 
 .nav-icon-instagram {
   margin: 0 0 0 0.5rem;
 }
 
-.nav-list {
+/* .nav-list {
   display: flex;
   flex-direction: row;
   list-style: none;
   margin: 0;
   padding: 0;
-}
+} */
 
 .nav-list .nav-link {
   text-decoration: none;
-  margin: 30px 35px 0px 35px;
-  padding: 26px 0;
+  margin: 20px 35px 0px 35px;
+  padding: 10px 0;
   box-sizing: border-box;
-  /* font-size: 1.2rem; */
   color: var(--main-navlink-color);
   font-size: 17px;
   font-weight: 400;
@@ -77,15 +139,115 @@
   background: transparent;
   border: none;
   outline: none;
-  color: rgb(57, 57, 57);
+  color: var(--main-navlink-color);
   display: none;
   height: 35px;
+  font-weight: 1px;
 }
 
-@media only screen and (max-width: 1148px) {
+/* .nav-container {
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1;
+} */
+
+.nav-container .nav-btn {
+  display: block;
+  margin: 10px 2.5rem 0px 0px;
+  font-size: 1.8rem;
+}
+
+.logo {
+  width: 7rem;
+  height: 20px;
+  margin: 10px 0 0 55px;
+}
+
+.nav-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  position: fixed;
+  top: 70px;
+  right: -50%;
+  width: 50%;
+  height: 100vh;
+  background-color: #e1e1e1;
+  box-shadow: 0 40px 60px rgba(49, 42, 70, 0.1);
+  border-left: 1px solid rgb(191, 191, 191);
+  list-style: none;
+  /* margin: 0; */
+
+  transition: none;
+  padding: 60px 0px;
+  overflow-y: auto;
+  max-height: calc(100vh - 50px);
+}
+
+.nav-list .nav-link {
+  font-size: 0.9rem;
+}
+
+.active {
+  right: 0px;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-icons {
+  margin: 4rem 2rem;
+}
+
+.nav-close-btn {
+  transition: 0.3s ease-in-out;
+  position: fixed;
+  top: 80px;
+  right: -20px;
+}
+
+@media only screen and (min-width: 1024px) {
   .nav-container {
-    /* position: fixed;
-    top: 0; */
+    justify-content: space-around;
+  }
+  .nav-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: static;
+    height: 80px;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+    background-color: #fff;
+    border: none;
+    transition: none;
+    box-shadow: none;
+    padding-top: 8px;
+  }
+
+  .nav-list .nav-link {
+    font-size: 17px;
+  }
+
+  .nav-link {
+    margin-top: 40px;
+  }
+
+  .nav-btn {
+    visibility: hidden;
+  }
+
+  .nav-icons {
+    margin: 20px 0 0 4rem;
+  }
+  .nav-list .nav-link:hover,
+  .nav-list a.active {
+    padding-bottom: 14px;
+  }
+}
+
+/* @media only screen and (max-width: 1024px) {
+  .nav-container {
     min-height: 90px;
     width: 100%;
     box-sizing: border-box;
@@ -159,4 +321,4 @@
     top: 0;
     width: 100%;
   }
-}
+} */
