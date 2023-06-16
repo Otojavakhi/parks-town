@@ -91,9 +91,11 @@
 
 @media only screen and (max-width: 768px) {
   .search-container {
+    display: flex;
+    flex-direction: column;
     overflow-y: scroll;
     max-height: 150px;
-    max-width: 350px;
+    max-width: 280px;
   }
   .search-form {
     margin: 0px 0px;
@@ -105,23 +107,28 @@
   }
 
   .search-title h4 {
-    font-size: 10px;
-    margin-left: 10px;
+    font-size: 8px;
+    margin-left: 2px;
     color: rgba(14, 121, 60, 0.982);
   }
 
   #minSquare {
-    margin: 6px 3px;
+    margin: 6px 2px;
   }
+
+  .found-apartments-list {
+    margin: 0px 10px;
+  }
+
   .found-apartments-info {
     display: flex;
     justify-content: space-around;
     margin: 2px 0px;
     padding: 0px 2px;
-    width: 260px;
+    width: 240px;
   }
   .found-apartments-info span:nth-child(2) {
-    margin-left: 28px;
+    margin-left: 30px;
   }
 
   .found-apartments-info span:nth-child(3) {
@@ -129,7 +136,7 @@
   }
 
   .found-apartments-info span:nth-child(4) {
-    margin: 0px 22px 0px 12px;
+    margin: 0px 26px 0px 12px;
   }
 
   .found-apartments-info span {
@@ -141,7 +148,7 @@
   .search-submit {
     width: 60px;
     padding: 2px;
-    height: 20px;
+    height: 15px;
     font-size: 8px;
     margin-right: 15px;
   }
@@ -153,7 +160,7 @@
   }
   .apartment-list-item {
     justify-content: space-around;
-    max-width: 300px;
+    width: 240px;
   }
 
   .apartment-list-item span {
