@@ -99,6 +99,8 @@
   border-radius: 4px;
   /* height: 150px; */
   width: 200px;
+  transform: translate(-50%, -100%); /* Move it up and center horizontally */
+  text-align: center; /* Center the text horizontally */
 }
 
 .coord-div::before {
@@ -117,6 +119,16 @@
   .building-container img {
     max-width: 550px;
     max-height: 550px;
+  }
+
+  .coord-div {
+    height: 50px;
+    width: 100px;
+  }
+
+  .apartment-poly-text {
+    width: 90px;
+    font-size: 7px;
   }
 }
 

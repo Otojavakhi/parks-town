@@ -76,12 +76,20 @@
 }
 @media only screen and (max-width: 510px) {
   .bread-crumbs .crumb a {
-    font-size: 8px;
+    font-size: 7px;
   }
   .bread-crumbs > * {
     margin: 0px 2px;
   }
   .bread-crumbs .crumb-link {
-    margin: 0px 4px 0px 10px;
+    margin: 0px 2px 0px 6px;
+  }
+  .next-icon {
+    display: none;
+  }
+}
+@media only screen and (max-width: 1248px) {
+  .bread-crumbs .crumb a {
+    font-size: 10px;
   }
 }

@@ -87,3 +87,70 @@
 .price-span {
   white-space: nowrap; /* Prevent line break */
 }
+
+@media only screen and (max-width: 768px) {
+  .search-container {
+    height: 250 px;
+  }
+  .search-form {
+    margin: 0px 0px;
+    min-width: 100%;
+  }
+
+  .search-submit {
+    margin: 0;
+  }
+
+  .search-title h4 {
+    font-size: 10px;
+    margin-left: 10px;
+    color: rgba(14, 121, 60, 0.982);
+  }
+
+  #minSquare {
+    margin: 6px 3px;
+  }
+  .found-apartments-info {
+    display: flex;
+    justify-content: space-around;
+    margin: 2px 0px;
+    width: 300px;
+  }
+
+  .found-apartments-info span:nth-child(3) {
+    margin-left: 4px;
+  }
+
+  .found-apartments-info span:nth-child(4) {
+    margin: 0px 2px 0px 2px;
+  }
+
+  .found-apartments-info span {
+    color: rgb(29, 98, 75);
+    font-size: 7px;
+    letter-spacing: 0.1px;
+    font-weight: bold;
+  }
+  .search-submit {
+    width: 60px;
+    padding: 2px;
+    height: 20px;
+    font-size: 8px;
+    margin-right: 15px;
+  }
+
+  .select-form {
+    padding: 2px;
+    cursor: pointer;
+    font-size: 7px;
+  }
+  .apartment-list-item {
+    justify-content: space-around;
+    width: 330px;
+  }
+
+  .apartment-list-item span {
+    font-size: 8px;
+    color: rgb(43, 56, 52);
+  }
+}

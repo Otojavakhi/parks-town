@@ -59,11 +59,16 @@ export const Buildings = () => {
     ) {
       setHoveredBuilding(foundBuilding);
     }
+    const buildingContainer = e.currentTarget.parentNode;
+    const containerRect = buildingContainer.getBoundingClientRect();
+
     // coordinates hovered element's position
     const polygon = e.target;
-    const bbox = polygon.getBBox();
-    const centerX = bbox.x + bbox.width / 2;
-    const centerY = bbox.y;
+    const polygonRect = polygon.getBoundingClientRect();
+    const containerTop = containerRect.top + window.scrollY;
+    const centerX =
+      polygonRect.left - containerRect.left + polygonRect.width / 2;
+    const centerY = polygonRect.top - containerTop;
 
     setBuildingCoordinates({ x: centerX, y: centerY });
   };
@@ -100,8 +105,8 @@ export const Buildings = () => {
           <div
             className="coord-div"
             style={{
-              left: buildingCoordinates.x + 5,
-              top: buildingCoordinates.y - 70,
+              left: buildingCoordinates.x,
+              top: buildingCoordinates.y - 30,
             }}
           >
             <span className="apartment-poly-text">

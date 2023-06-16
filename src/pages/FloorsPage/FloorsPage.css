@@ -3,7 +3,6 @@
   grid-template-columns: 1fr 1fr;
   padding: 20px 60px;
 }
-
 .choose-building-content {
   position: relative;
   /* display: grid;
@@ -122,4 +121,19 @@
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
   border-bottom: 10px solid rgb(18, 73, 118);
+}
+
+@media only screen and (max-width: 481px) {
+  .floors-page-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 60px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .main-right-building img {
+    max-height: 410px;
+    max-width: 310px;
+  }
 }
