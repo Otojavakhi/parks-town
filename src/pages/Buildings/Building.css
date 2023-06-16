@@ -1,6 +1,6 @@
 .choose-building-container {
   position: relative;
-  margin-top: 10px;
+  margin-top: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,7 +18,7 @@
   cursor: pointer;
 }
 
-.choose-building-container::before {
+/* .choose-building-container::before {
   content: "";
   position: absolute;
   top: 0;
@@ -28,6 +28,28 @@
   background-image: url("../../utils/png/leaves-scaled.webp");
   width: 100%;
   height: 70vh;
+} */
+.choose-building-container::before,
+.choose-building-container::after {
+  content: "";
+  position: absolute;
+  max-height: 400px;
+  top: 0;
+  bottom: 0;
+  width: 20%;
+  background-repeat: repeat;
+  background-size: cover;
+  z-index: -1;
+}
+
+.choose-building-container::before {
+  left: 0;
+  background-image: url("../../utils/png/leaves-scaled.webp");
+}
+
+.choose-building-container::after {
+  right: 0;
+  background-image: url("../../utils/png/leaves-scaled.webp");
 }
 
 /* .choose-building-container::before,
@@ -78,7 +100,7 @@
 }
 
 .apartment-poly-text {
-  color: #8c8f9c;
+  color: #f1f1f1;
 }
 
 .poly-fill:hover {
@@ -95,7 +117,7 @@
   position: absolute;
   background-color: #1e3441;
   padding: 5px;
-  border: 3px solid var(--main-navlink-color);
+  border: 3px solid rgb(26, 51, 71);
   border-radius: 4px;
   /* height: 150px; */
   width: 200px;
@@ -112,7 +134,12 @@
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-top: 10px solid var(--main-navlink-color); /* Match the background color of the coord-div */
+  border-top: 10px solid rgb(26, 51, 71); /* Match the background color of the coord-div */
+}
+
+.choose-building-icons {
+  margin-right: 6px;
+  color: rgb(88, 112, 126);
 }
 
 @media only screen and (max-width: 768px) {
@@ -127,7 +154,7 @@
   }
 
   .apartment-poly-text {
-    width: 100px;
+    width: 10px;
     font-size: 8px;
   }
 }

@@ -135,7 +135,6 @@ export default function FloorsPage() {
           </svg>
           <img src={imgUrl} alt="შენობა-1" />
         </div>
-        {/* <img src={leaves} alt="gg" /> */}
         <div>
           {isHovered && (
             <div

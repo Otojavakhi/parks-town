@@ -20,14 +20,14 @@
   margin: 0px 10px;
 }
 .bread-crumbs {
-  padding: 4px;
+  padding: 6px;
 }
 .bread-crumbs .crumb a {
   font-weight: 600;
   font-family: "BPG Nino Mtavruli", sans-serif;
   color: var(--main-navlink-color);
   text-decoration: none;
-  font-size: 7px;
+  font-size: 7.5px;
 }
 .bread-crumbs > * {
   margin: 0px 2px;
@@ -43,7 +43,7 @@
 .link-icons {
   color: rgb(88, 112, 126);
   padding-top: 4px;
-  font-size: 10px;
+  font-size: 13px;
 }
 .bread-crumbs .crumb:last-child:after {
   display: none;

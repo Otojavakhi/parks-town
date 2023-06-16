@@ -6,7 +6,9 @@ import { db } from "../../FirebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 import { useState } from "react";
 import { BuildingError } from "./BuildingError";
-
+import { ImHome } from "react-icons/im";
+import { BsFillBuildingsFill } from "react-icons/bs";
+import { FaKey } from "react-icons/fa";
 export const Buildings = () => {
   const [buildingCoordinates, setBuildingCoordinates] = useState({
     x: 0,
@@ -110,12 +112,15 @@ export const Buildings = () => {
             }}
           >
             <span className="apartment-poly-text">
+              <BsFillBuildingsFill className="choose-building-icons" />
               შენობა {hoveredBuilding.building.slice(-1)}
             </span>
             <span className="apartment-poly-text">
+              <ImHome className="choose-building-icons" />
               ბინები: {allAppartments}
             </span>
             <span className="apartment-poly-text">
+              <FaKey className="choose-building-icons" />
               დარჩენილი ბინები: {leftApartments}
             </span>
           </div>

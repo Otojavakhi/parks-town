@@ -93,38 +93,8 @@
 .floor-info p span {
   font-size: 9px;
   margin-right: 4px;
+  color: rgb(88, 112, 126);
 }
-
-@media only screen and (min-width: 481px) {
-  .main-right-building img {
-    max-height: 400px;
-    width: 400px;
-  }
-}
-
-.floors-page-container {
-  /* display: grid;
-  grid-template-columns: 1fr 1fr; */
-  /* padding: 20px 10px; */
-}
-.choose-building-content {
-  position: relative;
-  /* display: grid;
-  grid-template-columns: 1fr 1fr; */
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  margin-top: 20px;
-  /* padding: 0 70px; */
-}
-
-/* .main-right-building {
-  position: relative;
-}
-
-#b-svg-container {
-  position: absolute;
-} */
 
 .floors-page-container::before,
 .floors-page-container::after {
@@ -148,6 +118,70 @@
   right: 0;
   background-image: url("../../utils/png/leaves-scaled.webp");
 }
+
+@media only screen and (min-width: 481px) {
+  .main-right-building img {
+    max-height: 400px;
+    width: 400px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .floors-page-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .choose-building-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .floor-info {
+    width: 160px;
+    height: 50px;
+  }
+  .floor-info::before {
+    left: 105%;
+  }
+  .floor-info p {
+    font-size: 10px;
+  }
+  .floor-info p span {
+    font-size: 11px;
+    margin-right: 5px;
+  }
+  .main-right-building img {
+    max-height: 400px;
+    width: 500px;
+  }
+}
+.floors-page-container {
+  /* display: grid;
+  grid-template-columns: 1fr 1fr; */
+  /* padding: 20px 10px; */
+}
+.choose-building-content {
+  position: relative;
+  /* display: grid;
+  grid-template-columns: 1fr 1fr; */
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  margin-top: 20px;
+  /* padding: 0 70px; */
+}
+
+/* .main-right-building {
+  position: relative;
+}
+
+#b-svg-container {
+  position: absolute;
+} */
 
 /* .search-layout {
   border-right: 1px solid #e5e5e5;
