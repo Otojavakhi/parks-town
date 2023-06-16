@@ -18,6 +18,7 @@
   height: 30px;
   border-radius: 4px;
   border: 1px solid grey;
+  cursor: pointer;
 }
 .search-submit .search-icon {
   margin-right: 4px;
@@ -100,6 +101,7 @@
 
 .apartment-list-item span {
   font-size: 8px;
+  font-weight: 600;
   color: rgb(43, 56, 52);
 }
 
@@ -218,6 +220,123 @@
   }
   .search-submit .search-icon {
     margin-right: 8px;
+  }
+}
+
+@media only screen and (min-width: 1224px) {
+  .search-container {
+    /* display: inline-block; */
+    min-height: 500px;
+    min-width: 600px;
+  }
+
+  .search-form {
+    width: 600px;
+  }
+  .search-submit {
+    width: 130px;
+    height: 30px;
+    margin-left: 14px;
+    font-size: 13px;
+  }
+
+  .search-title h4 {
+    font-size: 16px;
+    padding-left: 6px;
+    margin-left: 2px;
+    margin-right: 6px;
+    border-left: 4px solid rgba(40, 207, 112, 0.982);
+  }
+
+  .select-form {
+    padding: 2px 4px;
+    cursor: pointer;
+    font-size: 13px;
+  }
+  #minSquare {
+    margin: 10px 8px;
+  }
+
+  .found-apartments-list {
+    margin: 0px 30px;
+  }
+
+  .found-apartments-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0px;
+    padding: 0px 4px;
+    width: 480px;
+  }
+
+  .found-apartments-info span {
+    font-size: 14px;
+  }
+
+  .apartment-list-item {
+    width: 480px;
+  }
+  .apartment-list-item span {
+    font-size: 11px;
+    margin-left: 14px;
+    padding: 4px;
+  }
+  .search-submit .search-icon {
+    margin-right: 8px;
+  }
+}
+
+@media only screen and (min-width: 1448px) {
+  .search-container {
+    min-height: 550px;
+    min-width: 700px;
+  }
+
+  .search-form {
+    width: 700px;
+  }
+  .search-submit {
+    width: 150px;
+    height: 30px;
+    margin-left: 20px;
+    font-size: 15px;
+  }
+
+  .search-title h4 {
+    font-size: 17px;
+  }
+
+  .select-form {
+    padding: 2px 4px;
+    cursor: pointer;
+    font-size: 15px;
+  }
+  #minSquare {
+    margin: 10px 8px;
+  }
+
+  .found-apartments-list {
+    margin: 0px 30px;
+  }
+
+  .found-apartments-info {
+    width: 580px;
+  }
+
+  .found-apartments-info span {
+    font-size: 16px;
+  }
+
+  .apartment-list-item {
+    width: 580px;
+  }
+  .apartment-list-item span {
+    font-size: 13px;
+    margin-left: 25px;
+  }
+  .search-submit .search-icon {
+    margin-right: 12px;
+    font-size: 12px;
   }
 }
 /* .search-container {
