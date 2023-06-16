@@ -134,6 +134,10 @@
 
   .main-right-building img {
     max-height: 410px;
-    max-width: 310px;
+    max-width: 370px;
+  }
+
+  .choose-building-content {
+    padding: 0;
   }
 }
