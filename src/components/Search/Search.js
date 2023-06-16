@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { MainUseContext } from "../../context/MainContext";
 import { useNavigate } from "react-router-dom";
+import { CiSearch } from "react-icons/ci";
 
 export const Search = () => {
   const [isFiltered, setIsFiltered] = useState(false);
@@ -86,6 +87,7 @@ export const Search = () => {
           </select>
 
           <button className="search-submit" type="submit">
+            <CiSearch className="search-icon" />
             მოძებნე ბინა
           </button>
         </form>

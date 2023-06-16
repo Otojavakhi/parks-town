@@ -10,7 +10,8 @@ import { Spinner } from "../../components/Spinner/Spinner.js";
 import { FloorsError } from "./FloorsError";
 import { getDownloadURL, ref } from "firebase/storage";
 import { Search } from "../../components/Search/Search";
-
+import { ImHome } from "react-icons/im";
+import { HiBuildingOffice2 } from "react-icons/hi2";
 export default function FloorsPage() {
   const { building } = useLoaderData();
 
@@ -140,12 +141,22 @@ export default function FloorsPage() {
             <div
               className={`floor-info ${isHovered ? "active" : ""}`}
               style={{
-                top: cursorPosition.y + -23 + "px",
-                left: cursorPosition.x - 230 + "px",
+                top: cursorPosition.y + -25 + "px",
+                left: cursorPosition.x - 150 + "px",
               }}
             >
-              <p>სართული {floor.slice(-1)}</p>
-              <p>დარჩენილი ბინები: {remainingApartments}</p>
+              <p>
+                <span>
+                  <HiBuildingOffice2 />
+                </span>
+                სართული {floor.slice(-1)}
+              </p>
+              <p>
+                <span>
+                  <ImHome />
+                </span>
+                დარჩენილი ბინები: {remainingApartments}
+              </p>
             </div>
           )}
         </div>
