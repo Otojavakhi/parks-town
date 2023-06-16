@@ -106,7 +106,7 @@ export const Buildings = () => {
             className="coord-div"
             style={{
               left: buildingCoordinates.x,
-              top: buildingCoordinates.y - 30,
+              top: buildingCoordinates.y - 10,
             }}
           >
             <span className="apartment-poly-text">
