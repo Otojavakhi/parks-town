@@ -5,7 +5,10 @@
   overflow-x: hidden;
   /* max-height: 150px; */
   /* width: 320px; */
+  padding-bottom: 8px;
+  box-shadow: 0 8px 20px #3c46641f;
   background-color: rgba(252, 252, 252, 0.51);
+  margin-left: 40px;
 }
 .search-form {
   display: block;
@@ -107,7 +110,7 @@
 
 @media only screen and (min-width: 481px) {
   .search-container {
-    height: 200px;
+    height: 150px;
     width: 480px;
     padding: 10px 10px;
     align-items: center;
@@ -164,7 +167,7 @@
 
 @media only screen and (min-width: 1024px) {
   .search-container {
-    height: 500px;
+    height: 370px;
     width: 480px;
     padding: 10px;
     align-items: center;
@@ -226,7 +229,7 @@
 @media only screen and (min-width: 1224px) {
   .search-container {
     /* display: inline-block; */
-    min-height: 500px;
+    height: 470px;
     min-width: 600px;
   }
 
@@ -288,7 +291,7 @@
 
 @media only screen and (min-width: 1448px) {
   .search-container {
-    min-height: 550px;
+    min-height: 500px;
     min-width: 700px;
   }
 

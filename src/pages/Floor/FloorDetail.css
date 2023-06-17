@@ -43,7 +43,7 @@
 }
 
 .floor-container img {
-  width: 250px;
+  width: 330px;
 }
 
 .floor-container svg {
@@ -117,7 +117,7 @@
 
 @media only screen and (min-width: 481px) {
   .floor-container img {
-    width: 350px;
+    width: 450px;
   }
   .apartment-poly-text {
     width: 50px;
@@ -134,7 +134,7 @@
 
 @media only screen and (min-width: 789px) {
   .floor-container img {
-    width: 450px;
+    width: 650px;
   }
   .apartment-poly-text {
     width: 60px;
@@ -151,7 +151,7 @@
 
 @media only screen and (min-width: 1024px) {
   .floor-container img {
-    width: 550px;
+    width: 850px;
   }
   .apartment-poly-text {
     width: 70px;
@@ -168,7 +168,7 @@
 
 @media only screen and (min-width: 1248px) {
   .floor-container img {
-    width: 750px;
+    width: 950px;
   }
   .apartment-poly-text {
     width: 80px;

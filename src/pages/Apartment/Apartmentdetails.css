@@ -1,51 +1,71 @@
 .apartment-details {
-  display: grid;
-  grid-template-columns: 0.8fr 1fr;
-  margin: 0 80px;
-  background-color: #fff;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .apartment-description {
-  background-color: rgb(229, 229, 229);
+  background-color: rgb(243, 243, 243);
   border-right: 1px solid #e5e5e5;
+  box-shadow: 0 8px 20px #3c46641f;
 }
 
 .apartment-price {
-  background-color: rgb(220, 219, 219);
+  background-color: rgb(243, 243, 243);
+  box-shadow: 0 8px 20px #3c46641f;
   padding: 15px;
   margin-bottom: 15px;
 }
 
 .apartment-price h3 {
   color: rgb(59, 59, 59);
-  margin-bottom: 10px;
+  font-size: 14px;
+  margin-bottom: 4px;
 }
 
 .apartment-price p {
   color: rgb(120, 117, 117);
+  font-size: 12px;
 }
 
 .apartment-imgs {
   position: relative;
   text-align: center;
+  box-shadow: 0 8px 20px #3c46641f;
 }
 .apartment-imgs button {
   position: absolute;
-  top: 20px;
-  left: 40px;
-  padding: 7px 12px;
+  top: 10px;
+  right: 2px;
+  padding: 4px 8px;
   cursor: pointer;
+  background-color: var(--main-navlink-color);
+  color: #f1f1f1;
+  border-radius: 4px;
 }
 
 .apartment-details-info {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  height: 250px;
+  padding: 6px 6px 14px 6px;
+  height: 200px;
+  width: 300px;
+  overflow: hidden;
+}
+
+.apartment-imgs img {
+  width: 300px;
 }
 
 .apartment-details-info > * {
-  margin: 10px 30px 10px 50px;
+  margin: 2px 3px 1px 5px;
   color: rgb(59, 59, 59);
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.info-display h4 {
+  color: var(--main-navlink-color);
 }
