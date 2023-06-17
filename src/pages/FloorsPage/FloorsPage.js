@@ -12,6 +12,7 @@ import { getDownloadURL, ref } from "firebase/storage";
 import { Search } from "../../components/Search/Search";
 import { ImHome } from "react-icons/im";
 import { HiBuildingOffice2 } from "react-icons/hi2";
+
 export default function FloorsPage() {
   const { building } = useLoaderData();
 
@@ -26,6 +27,36 @@ export default function FloorsPage() {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
   const navigate = useNavigate();
+
+  const calculateFloorInfoPosition = () => {
+    const cursorOffsetX = 20;
+    const cursorOffsetY = 25;
+    const floorInfoWidth = 165;
+    const floorInfoHeight = 52;
+
+    let floorInfoLeft = cursorPosition.x - floorInfoWidth / 2;
+    let floorInfoTop = cursorPosition.y - cursorOffsetY;
+    if (window.innerWidth <= 1024) {
+      floorInfoLeft = cursorPosition.x - 150;
+      floorInfoTop = cursorPosition.y - floorInfoHeight - cursorOffsetY + 55;
+    }
+    if (window.innerWidth >= 1024) {
+      floorInfoLeft = cursorPosition.x - 190;
+      floorInfoTop = cursorPosition.y - floorInfoHeight - cursorOffsetY + 50;
+    }
+    if (window.innerWidth >= 1224) {
+      floorInfoLeft = cursorPosition.x - 220;
+      floorInfoTop = cursorPosition.y - floorInfoHeight - cursorOffsetY + 40;
+    }
+    if (window.innerWidth >= 1448) {
+      floorInfoLeft = cursorPosition.x - 220;
+      floorInfoTop = cursorPosition.y - floorInfoHeight - cursorOffsetY + 50;
+    }
+    return {
+      top: floorInfoTop + "px",
+      left: floorInfoLeft + "px",
+    };
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -139,10 +170,7 @@ export default function FloorsPage() {
           {isHovered && (
             <div
               className={`floor-info ${isHovered ? "active" : ""}`}
-              style={{
-                top: cursorPosition.y + -25 + "px",
-                left: cursorPosition.x - 150 + "px",
-              }}
+              style={calculateFloorInfoPosition()}
             >
               <p>
                 <span>
