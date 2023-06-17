@@ -174,13 +174,13 @@
   }
   .coord-div {
     height: 60px;
-    width: 115px;
-    padding: 2px;
+    width: 120px;
+    padding: 0px 2px;
   }
 
   .building-poly-text {
-    width: 90px;
-    font-size: 7px;
+    /* width: 60px; */
+    font-size: 8px;
     margin: 1px 0px;
   }
 }
