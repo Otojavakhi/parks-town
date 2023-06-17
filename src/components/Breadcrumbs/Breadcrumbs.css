@@ -5,13 +5,8 @@
   display: flex;
   justify-content: center;
   margin: 0 auto;
-
-  /* border-bottom: 2px solid #d7d7d8;
-    border-right: 2px solid #d7d7d8;
-    border-left: 2px solid #d7d7d8; */
   background-color: #d5d9e558;
   box-shadow: 0 8px 20px #3c46641f;
-  padding: 15px;
 }
 .bread-crumbs > * {
   display: flex;
@@ -20,14 +15,14 @@
   margin: 0px 10px;
 }
 .bread-crumbs {
-  padding: 6px;
+  padding: 11px;
 }
 .bread-crumbs .crumb a {
   font-weight: 600;
   font-family: "BPG Nino Mtavruli", sans-serif;
   color: var(--main-navlink-color);
   text-decoration: none;
-  font-size: 7.5px;
+  font-size: 8.5px;
 }
 .bread-crumbs > * {
   margin: 0px 2px;
@@ -60,7 +55,7 @@
 }
 @media only screen and (min-width: 781px) {
   .bread-crumbs {
-    padding: 20px;
+    padding: 18px;
   }
   .bread-crumbs .crumb a {
     font-size: 11px;
@@ -82,6 +77,9 @@
 @media only screen and (min-width: 1024px) {
   .bread-crumbs .crumb a {
     font-size: 14px;
+  }
+  .bread-crumbs {
+    padding: 20px;
   }
   .next-icon {
     height: 10px;

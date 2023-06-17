@@ -26,8 +26,9 @@
 }
 
 .apartment-price p {
-  color: rgb(120, 117, 117);
+  color: rgb(37, 39, 52);
   font-size: 12px;
+  font-weight: 600;
 }
 
 .apartment-imgs {
