@@ -8,7 +8,7 @@ import { useState } from "react";
 import { Spinner } from "../../components/Spinner/Spinner.js";
 import { buildingLoader } from "../FloorsPage/FloorsPage";
 import { getDownloadURL, ref } from "firebase/storage";
-
+import { ImHome } from "react-icons/im";
 export const FloorDetails = () => {
   const { fl } = useParams();
   // loads data from Loader Function
@@ -20,10 +20,7 @@ export const FloorDetails = () => {
 
   // shows apartment's number and apartment's square when hover it
   const [hoveredApartment, setHoveredApartment] = useState(null);
-  const [apartmentCoordinates, setApartmentCoordinates] = useState({
-    x: 0,
-    y: 0,
-  });
+  const [apartmentCoordinates, setApartmentCoordinates] = useState();
   const [imgUrl, setImgUrl] = useState("");
   const [isLoading, setLoading] = useState(true);
 
@@ -65,10 +62,16 @@ export const FloorDetails = () => {
     }
 
     // coordinates hovered element's position
+    const apartmentContainer = e.currentTarget.parentNode;
+    const containerRect = apartmentContainer.getBoundingClientRect();
+
+    // coordinates hovered element's position
     const polygon = e.target;
-    const bbox = polygon.getBBox();
-    const centerX = bbox.x + bbox.width / 2;
-    const centerY = bbox.y;
+    const polygonRect = polygon.getBoundingClientRect();
+    const containerTop = containerRect.top + window.scrollY;
+    const centerX =
+      polygonRect.left - containerRect.left + polygonRect.width / 2;
+    const centerY = polygonRect.top - containerTop;
 
     setApartmentCoordinates({ x: centerX, y: centerY });
   };
@@ -116,7 +119,7 @@ export const FloorDetails = () => {
           {floor.apartments.map((apartment) => {
             return (
               <polygon
-                className={`poly-fill ${
+                className={`apartment-poly-fill ${
                   apartment.sold ? "sold-apartment" : ""
                 }`}
                 key={apartment.apartment}
@@ -131,12 +134,14 @@ export const FloorDetails = () => {
           <div
             className="apartment-coord-div"
             style={{
-              left: apartmentCoordinates.x - 40,
-              top: apartmentCoordinates.y - 85,
+              left: apartmentCoordinates.x - 30,
+              top: apartmentCoordinates.y - 50,
             }}
           >
             <span className="apartment-poly-text">
-              ბინა {hoveredApartment.apartment.slice(-1)}
+              <ImHome className="apartment-info-icon" />
+
+              <span>ბინა {hoveredApartment.apartment.slice(-1)}</span>
             </span>
             <span className="apartment-poly-text">
               {`${hoveredApartment.square} m2`}

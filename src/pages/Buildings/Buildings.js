@@ -111,15 +111,15 @@ export const Buildings = () => {
               top: buildingCoordinates.y - 10,
             }}
           >
-            <span className="apartment-poly-text">
+            <span className="building-poly-text">
               <BsFillBuildingsFill className="choose-building-icons" />
               შენობა {hoveredBuilding.building.slice(-1)}
             </span>
-            <span className="apartment-poly-text">
+            <span className="building-poly-text">
               <ImHome className="choose-building-icons" />
               ბინები: {allAppartments}
             </span>
-            <span className="apartment-poly-text">
+            <span className="building-poly-text">
               <FaKey className="choose-building-icons" />
               დარჩენილი ბინები: {leftApartments}
             </span>

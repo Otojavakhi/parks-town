@@ -99,7 +99,7 @@
   transition: all 0.3s ease-in-out;
 }
 
-.apartment-poly-text {
+.building-poly-text {
   color: #f1f1f1;
 }
 
@@ -121,8 +121,7 @@
   border-radius: 4px;
   /* height: 150px; */
   width: 230px;
-  transform: translate(-50%, -100%); /* Move it up and center horizontally */
-  text-align: center; /* Center the text horizontally */
+  transform: translate(-50%, -100%);
 }
 
 .coord-div::before {
@@ -153,8 +152,9 @@
     width: 110px;
   }
 
-  .apartment-poly-text {
-    width: 10px;
+  .building-poly-text {
+    padding: 2px;
+    width: 100px;
     font-size: 8px;
   }
 }
@@ -169,7 +169,7 @@
     width: 100px;
   }
 
-  .apartment-poly-text {
+  .building-poly-text {
     width: 90px;
     font-size: 7px;
   }
