@@ -116,12 +116,19 @@
 .coord-div {
   position: absolute;
   background-color: #1e3441;
-  padding: 5px;
+  padding: 3px;
   border: 3px solid rgb(26, 51, 71);
   border-radius: 4px;
   /* height: 150px; */
   width: 230px;
   transform: translate(-50%, -100%);
+  padding: 4px;
+  height: 90px;
+  width: 200px;
+}
+
+.building-poly-text {
+  margin: 2px 0px;
 }
 
 .coord-div::before {
@@ -150,6 +157,7 @@
   .coord-div {
     height: 60px;
     width: 110px;
+    padding: 6px;
   }
 
   .building-poly-text {
@@ -165,12 +173,14 @@
     max-height: 350px;
   }
   .coord-div {
-    height: 50px;
-    width: 100px;
+    height: 60px;
+    width: 110px;
+    padding: 3px;
   }
 
   .building-poly-text {
     width: 90px;
     font-size: 7px;
+    margin: 1px 0px;
   }
 }
