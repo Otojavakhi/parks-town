@@ -173,14 +173,15 @@
     max-height: 350px;
   }
   .coord-div {
-    height: 50px;
+    height: 55px;
     width: 125px;
     padding: 0px 2px;
     margin: 0;
   }
 
   .building-poly-text {
-    font-size: 8px;
+    width: 110px;
+    font-size: 8.5px;
     margin: 2px 0px;
     padding: 0;
   }
