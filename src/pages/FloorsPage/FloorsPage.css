@@ -20,7 +20,7 @@
 .floors-page-container {
   display: flex;
   flex-direction: column;
-  padding: 20px 20px;
+  padding: 15px 0px;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -28,7 +28,7 @@
 
 .main-right-building img {
   max-height: 400px;
-  width: 380px;
+  max-width: 100%;
 }
 
 .choose-building-content {
@@ -88,7 +88,7 @@
 }
 .floor-info p {
   text-align: center;
-  font-size: 8px;
+  font-size: 8.5px;
   color: #f1f1f1;
   padding: 2px 0px;
 }
