@@ -81,6 +81,7 @@
   color: rgb(75, 71, 71);
   margin-left: 4px;
   color: #f1f1f1;
+  padding: 2px;
 }
 .apartment-poly-text span {
   margin-left: 12px;
@@ -106,7 +107,7 @@
 .apartment-coord-div::before {
   content: "";
   position: absolute;
-  bottom: -4px; /* Adjust the distance from the bottom */
+  bottom: -8px; /* Adjust the distance from the bottom */
   left: calc(50% - 10px); /* Adjust the horizontal position */
   width: 0;
   height: 0;
@@ -178,7 +179,7 @@
     margin-left: 26px;
   }
   .apartment-coord-div {
-    height: 53px;
-    width: 120px;
+    height: 70px;
+    width: 110px;
   }
 }

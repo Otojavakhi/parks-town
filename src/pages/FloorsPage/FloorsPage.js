@@ -12,6 +12,7 @@ import { getDownloadURL, ref } from "firebase/storage";
 import { Search } from "../../components/Search/Search";
 import { ImHome } from "react-icons/im";
 import { HiBuildingOffice2 } from "react-icons/hi2";
+import { useRef } from "react";
 
 export default function FloorsPage() {
   const { building } = useLoaderData();
@@ -25,7 +26,7 @@ export default function FloorsPage() {
   const [isHovered, setIsHovered] = useState(false);
   // sets coordinates on mouse cursor when hover it on element
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
-
+  const isHoveredRef = useRef(false);
   const navigate = useNavigate();
 
   const calculateFloorInfoPosition = () => {
@@ -98,20 +99,22 @@ export default function FloorsPage() {
   const handleMouseOver = (e) => {
     e.target.classList.add("poly-fill");
 
+    if (!e.target.hasAttribute("data-floor")) console.log("has not attribute");
     if (!e.target.hasAttribute("data-floor")) return;
+    console.log(e.target);
 
     const datasetFloor = e.target.dataset.floor;
 
     floorFounder(datasetFloor);
-    setIsHovered(true);
-
+    // setIsHovered(true);
+    isHoveredRef.current = true;
     window.addEventListener("mousemove", onMouseMove);
   };
 
   // removes floor-info when mouseOut on element
   const handleMouseOut = (e) => {
     e.target.classList.remove("poly-fill");
-    setIsHovered(false);
+    isHoveredRef.current = false;
     window.removeEventListener("mousemove", onMouseMove);
   };
 
@@ -167,7 +170,7 @@ export default function FloorsPage() {
           <img src={imgUrl} alt="შენობა-1" />
         </div>
         <div>
-          {isHovered && (
+          {isHoveredRef.current && (
             <div
               className={`floor-info ${isHovered ? "active" : ""}`}
               style={calculateFloorInfoPosition()}
