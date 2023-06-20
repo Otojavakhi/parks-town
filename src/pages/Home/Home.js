@@ -20,7 +20,7 @@ export const Home = () => {
           <Link className="choose-building-link" to="choose-building">
             აარჩიე აპარტამენტი
           </Link>
-          <button className="contact-us">დაგვიკავშირდით</button>
+          <Link className="contact-us">დაგვიკავშირდით</Link>
         </div>
       </div>
       <Link to="choose-building">

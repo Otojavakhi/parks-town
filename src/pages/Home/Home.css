@@ -64,12 +64,11 @@
 
 .home-buttons {
   display: flex;
-  /* height: 35px; */
   gap: 10px;
 }
 
 .home-buttons > * {
-  padding: 15px 4px;
+  padding: 13px 4px;
   text-align: center;
   width: 130px;
   cursor: pointer;
@@ -90,7 +89,8 @@
 }
 .contact-us {
   color: rgb(55, 57, 67);
-  background-color: #f8f8f8;
+  background-color: #d5d9e5;
+  /* border: 1px solid var(--main-navlink-color); */
 }
 
 .choose-building-img {
