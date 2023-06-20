@@ -160,9 +160,10 @@
   }
 
   .coord-div {
-    height: 60px;
+    height: 70px;
     width: 110px;
-    padding: 6px;
+    padding: 0px 2px;
+    gap: 2px;
   }
 
   .building-poly-text {
@@ -178,7 +179,7 @@
     max-height: 350px;
   }
   .coord-div {
-    height: 55px;
+    height: 62px;
     width: 125px;
     padding: 0px 2px;
     margin: 0;
