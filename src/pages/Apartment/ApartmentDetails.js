@@ -57,7 +57,7 @@ export const ApartmentDetails = () => {
     if (!clickedButton) return;
 
     buttons.forEach((button) => button.classList.remove("active-price"));
-    // buttons.forEach((button) => (button.style.backgroundColor = ""));
+
     e.target.classList.add("active-price");
 
     if (e.target.classList.contains("usd-btn")) {
@@ -80,7 +80,7 @@ export const ApartmentDetails = () => {
           <div onClick={changeCurrency} className="apartment-price-container">
             <h3>ფასი</h3>
             <button
-              className="btn usd-btn"
+              className="btn usd-btn active-price"
               // onClick={() => setCurrentCurrency("USD")}
             >
               $
