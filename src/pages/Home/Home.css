@@ -64,11 +64,12 @@
 
 .home-buttons {
   display: flex;
+  /* height: 35px; */
   gap: 10px;
 }
 
 .home-buttons > * {
-  padding: 10px 4px;
+  padding: 15px 4px;
   text-align: center;
   width: 130px;
   cursor: pointer;
@@ -123,7 +124,7 @@
   }
 
   .home-buttons > * {
-    padding: 8px;
+    padding: 18px 6px;
     width: 160px;
     font-size: 13px;
     margin-top: 15px;
@@ -181,7 +182,7 @@
   }
 
   .home-buttons > * {
-    padding: 12px;
+    padding: 20px 6px;
     width: 190px;
     font-size: 16px;
     margin-top: 15px;

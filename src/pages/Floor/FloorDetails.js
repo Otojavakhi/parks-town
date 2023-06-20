@@ -9,6 +9,7 @@ import { Spinner } from "../../components/Spinner/Spinner.js";
 import { buildingLoader } from "../FloorsPage/FloorsPage";
 import { getDownloadURL, ref } from "firebase/storage";
 import { ImHome } from "react-icons/im";
+
 export const FloorDetails = () => {
   const { fl } = useParams();
   // loads data from Loader Function
@@ -20,7 +21,7 @@ export const FloorDetails = () => {
 
   // shows apartment's number and apartment's square when hover it
   const [hoveredApartment, setHoveredApartment] = useState(null);
-  const [apartmentCoordinates, setApartmentCoordinates] = useState();
+  const [apartmentCoordinates, setApartmentCoordinates] = useState(null);
   const [imgUrl, setImgUrl] = useState("");
   const [isLoading, setLoading] = useState(true);
 
@@ -48,8 +49,7 @@ export const FloorDetails = () => {
     const datasetApartment = e.target.getAttribute("data-apartment");
 
     const foundApartment = floor.apartments.find(
-      (apartment) =>
-        apartment.apartment === datasetApartment && apartment.sold !== true
+      (apartment) => apartment.apartment === datasetApartment
     );
     // if apartment doesn't find, when it's sold just returns. avoid undefined error.
     if (!foundApartment) return;
@@ -116,36 +116,42 @@ export const FloorDetails = () => {
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
         >
-          {floor.apartments.map((apartment) => {
-            return (
-              <polygon
-                className={`apartment-poly-fill ${
-                  apartment.sold ? "sold-apartment" : ""
-                }`}
-                key={apartment.apartment}
-                points={apartment.apartmentPolypoints}
-                data-apartment={apartment.apartment}
-              ></polygon>
-            );
-          })}
+          {floor.apartments.map((apartment) => (
+            <polygon
+              className={`apartment-poly-fill ${
+                apartment.sold ? "sold-apartment" : ""
+              }`}
+              key={apartment.apartment}
+              points={apartment.apartmentPolypoints}
+              data-apartment={apartment.apartment}
+            />
+          ))}
         </svg>
         <img src={imgUrl} alt={`სართული-${fl}`} />
         {hoveredApartment && (
           <div
-            className="apartment-coord-div"
+            className={`apartment-coord-div ${
+              hoveredApartment.sold ? "sold-coord-div" : ""
+            }`}
             style={{
-              left: apartmentCoordinates.x - 30,
-              top: apartmentCoordinates.y - 90,
+              left: apartmentCoordinates?.x - 50,
+              top: apartmentCoordinates?.y - 90,
             }}
           >
-            <span className="apartment-poly-text">
-              <ImHome className="apartment-info-icon" />
-
-              <span>ბინა {hoveredApartment.apartment.slice(-1)}</span>
-            </span>
-            <span className="apartment-poly-text">
-              {`${hoveredApartment.square} m2`}
-            </span>
+            {hoveredApartment.sold ? (
+              <span className="apartment-poly-text">
+                <ImHome className="apartment-info-icon" />
+                <span>sold</span>
+              </span>
+            ) : (
+              <>
+                <span className="apartment-poly-text">
+                  <ImHome className="apartment-info-icon" />
+                  <span>ბინა {hoveredApartment.apartment.slice(-1)}</span>
+                </span>
+                <span className="apartment-poly-text">{`${hoveredApartment.square} m2`}</span>
+              </>
+            )}
           </div>
         )}
       </div>

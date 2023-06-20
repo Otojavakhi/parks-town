@@ -115,15 +115,20 @@
 } */
 .coord-div {
   position: absolute;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  transform: translate(-50%, -50%);
+  border-radius: 8px;
   background-color: #1e3441;
-  padding: 3px;
   border: 3px solid rgb(26, 51, 71);
   border-radius: 4px;
   /* height: 150px; */
   width: 230px;
   transform: translate(-50%, -100%);
-  padding: 4px;
-  height: 90px;
+  padding: 8px 4px;
+  gap: 4px;
+  height: 100px;
   width: 200px;
 }
 

@@ -22,7 +22,7 @@
   font-family: "BPG Nino Mtavruli", sans-serif;
   color: var(--main-navlink-color);
   text-decoration: none;
-  font-size: 8.5px;
+  font-size: 10px;
 }
 .bread-crumbs > * {
   margin: 0px 2px;

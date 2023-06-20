@@ -56,22 +56,10 @@
 
 .apartment-poly-fill.sold-apartment {
   stroke: rgba(47, 163, 234, 0.64);
-  fill: rgba(190, 24, 13, 0.64);
+  fill: rgb(95, 40, 40);
   stroke-width: 4px;
   opacity: 0.6;
   cursor: default;
-}
-
-.coord-div {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  background-color: #3eb3d1;
-  border: 1px solid #a84242;
-  pointer-events: none;
-  display: flex;
-  flex-direction: column;
-  border-radius: 8px;
-  padding: 10px;
 }
 
 .apartment-poly-text {
@@ -114,6 +102,13 @@
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   border-top: 10px solid #1e3441;
+}
+
+.sold-coord-div {
+  background-color: rgb(101, 43, 43);
+}
+.sold-coord-div::before {
+  border-top: 10px solid rgb(101, 43, 43);
 }
 
 @media only screen and (min-width: 481px) {

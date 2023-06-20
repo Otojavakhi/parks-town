@@ -18,6 +18,7 @@ export const ApartmentDetails = () => {
   const [currentCurrency, setCurrentCurrency] = useState("USD");
   const [gel, setGel] = useState(null);
 
+  // fetching current USD currency
   const USD_URL =
     "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd.min.json";
   useEffect(() => {
@@ -48,6 +49,7 @@ export const ApartmentDetails = () => {
     getApartmentImages();
   }, [visual, apartment.drawImg, apartment.visualImg]);
 
+  // changes USD to GEL currency on button clicks ($ and ₾)
   const changeCurrency = (e) => {
     const buttons = document.querySelectorAll(
       ".apartment-price-container button"
@@ -80,18 +82,8 @@ export const ApartmentDetails = () => {
           <div onClick={changeCurrency} className="apartment-price-container">
             <h3>ფასი</h3>
             <div className="price-buttons">
-              <button
-                className="btn usd-btn active-price"
-                // onClick={() => setCurrentCurrency("USD")}
-              >
-                USD
-              </button>
-              <button
-                className="btn gel-btn"
-                // onClick={() => setCurrentCurrency("GEL")}
-              >
-                GEL
-              </button>
+              <button className="btn usd-btn active-price">USD</button>
+              <button className="btn gel-btn">GEL</button>
             </div>
           </div>
           <p>
