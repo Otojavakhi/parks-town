@@ -108,6 +108,10 @@
   color: rgb(43, 56, 52);
 }
 
+.found-apartments-list ul {
+  max-height: 100px;
+}
+
 @media only screen and (min-width: 481px) {
   .search-container {
     height: 150px;

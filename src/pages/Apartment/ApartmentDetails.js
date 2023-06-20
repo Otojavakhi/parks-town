@@ -15,6 +15,19 @@ export const ApartmentDetails = () => {
   const [visual, setVisual] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
   const [initialLoading, setInitialLoading] = useState(true);
+  const [currentCurrency, setCurrentCurrency] = useState("USD");
+  const [gel, setGel] = useState(null);
+
+  const USD_URL =
+    "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd.min.json";
+  useEffect(() => {
+    fetch(USD_URL)
+      .then((res) => res.json())
+      .then((data) => {
+        setGel(data.usd.gel);
+      });
+  }, [gel]);
+  console.log(gel);
 
   // sets Images according state value
   useEffect(() => {
@@ -35,6 +48,25 @@ export const ApartmentDetails = () => {
     getApartmentImages();
   }, [visual, apartment.drawImg, apartment.visualImg]);
 
+  const changeCurrency = (e) => {
+    const buttons = document.querySelectorAll(
+      ".apartment-price-container button"
+    );
+
+    const clickedButton = e.target.closest(".btn");
+    if (!clickedButton) return;
+
+    buttons.forEach((button) => button.classList.remove("active-price"));
+    // buttons.forEach((button) => (button.style.backgroundColor = ""));
+    e.target.classList.add("active-price");
+
+    if (e.target.classList.contains("usd-btn")) {
+      setCurrentCurrency("USD");
+    } else {
+      setCurrentCurrency("GEL");
+    }
+  };
+
   if (initialLoading)
     return (
       <div className="isloading">
@@ -45,8 +77,26 @@ export const ApartmentDetails = () => {
     <div className="apartment-details">
       <div className="apartment-description">
         <div className="apartment-price">
-          <h3>ფასი</h3>
-          <p> {apartment.price} $</p>
+          <div onClick={changeCurrency} className="apartment-price-container">
+            <h3>ფასი</h3>
+            <button
+              className="btn usd-btn"
+              // onClick={() => setCurrentCurrency("USD")}
+            >
+              $
+            </button>
+            <button
+              className="btn gel-btn"
+              // onClick={() => setCurrentCurrency("GEL")}
+            >
+              ₾
+            </button>
+          </div>
+          <p>
+            {currentCurrency === "USD"
+              ? apartment.price
+              : (apartment.price * gel).toFixed(3)}
+          </p>
         </div>
         <div className="apartment-details-info">
           <span className="info-display">
