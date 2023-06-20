@@ -79,29 +79,32 @@ export const ApartmentDetails = () => {
         <div className="apartment-price">
           <div onClick={changeCurrency} className="apartment-price-container">
             <h3>ფასი</h3>
-            <button
-              className="btn usd-btn active-price"
-              // onClick={() => setCurrentCurrency("USD")}
-            >
-              $
-            </button>
-            <button
-              className="btn gel-btn"
-              // onClick={() => setCurrentCurrency("GEL")}
-            >
-              ₾
-            </button>
+            <div className="price-buttons">
+              <button
+                className="btn usd-btn active-price"
+                // onClick={() => setCurrentCurrency("USD")}
+              >
+                USD
+              </button>
+              <button
+                className="btn gel-btn"
+                // onClick={() => setCurrentCurrency("GEL")}
+              >
+                GEL
+              </button>
+            </div>
           </div>
           <p>
             {currentCurrency === "USD"
               ? apartment.price
-              : (apartment.price * gel).toFixed(3)}
+              : (apartment.price * gel).toFixed(2)}{" "}
+            {currentCurrency === "USD" ? "$" : "₾"}
           </p>
         </div>
         <div className="apartment-details-info">
           <span className="info-display">
             <h4>ბინა</h4>
-            <span>{apartment.apartment.slice(-1)}</span>
+            <span>{apartment.apartment.slice(-1)} </span>
           </span>
           <span className="info-display">
             <h4>სართული</h4>
