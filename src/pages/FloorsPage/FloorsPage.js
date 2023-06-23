@@ -169,6 +169,7 @@ export default function FloorsPage() {
           </svg>
           <img src={imgUrl} alt="შენობა-1" />
           {user ? <button>update</button> : null}
+          {5 > 4 ? "correct" : ""}
         </div>
         <div>
           {isHoveredRef.current && (
