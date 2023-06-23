@@ -7,7 +7,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 // layouts
 import RootLayout from "./layouts/RootLayout";
 import FloorsLayout from "./layouts/FloorsLayout";
@@ -32,6 +32,9 @@ import {
 } from "./pages/Buildings/Buildings";
 import { FloorsError } from "./pages/FloorsPage/FloorsError";
 import { BuildingError } from "./pages/Buildings/BuildingError";
+import AdminSignIn from "./pages/Admin/AdminSignIn";
+import AdminPanel from "./pages/Admin/AdminPanel/AdminPanel";
+import SignInError from "./pages/Admin/SignInError";
 
 /////////////////////////////////////////
 
@@ -40,6 +43,16 @@ const router = createBrowserRouter(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
       <Route path="contact" element={<Contact />} />
+      <Route path="admin" element={<AdminSignIn />} />
+      <Route
+        path="admin/admin-panel"
+        element={
+          <ProtectedRoute>
+            <AdminPanel />
+          </ProtectedRoute>
+        }
+        // errorElement={<SignInError />}
+      />
 
       <Route path="choose-building" element={<FloorsLayout />}>
         {/* <Route index element={<Buildings />} /> */}

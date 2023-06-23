@@ -17,7 +17,7 @@ import { useRef } from "react";
 export default function FloorsPage() {
   const { building } = useLoaderData();
 
-  const { isLoading, setIsLoading, imgUrl, setImgUrl, setBuildingData } =
+  const { isLoading, setIsLoading, imgUrl, setImgUrl, setBuildingData, user } =
     MainUseContext();
 
   const [remainingApartments, setRemainingApartments] = useState(null);
@@ -168,6 +168,7 @@ export default function FloorsPage() {
             })}
           </svg>
           <img src={imgUrl} alt="შენობა-1" />
+          {user ? <button>update</button> : null}
         </div>
         <div>
           {isHoveredRef.current && (

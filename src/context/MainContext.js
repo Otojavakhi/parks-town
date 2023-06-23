@@ -6,13 +6,29 @@ import { colRef } from "../FirebaseConfig";
 import { getDocs } from "firebase/firestore";
 import { storage } from "../FirebaseConfig";
 import { ref, getDownloadURL } from "firebase/storage";
+import { onAuthStateChanged, getAuth } from "firebase/auth";
 
 const MainContext = createContext();
 
 export const MainContextProvider = ({ children }) => {
+  const auth = getAuth();
   // get data from firebase
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  // user Auth
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      // console.log(currentUser)
+
+      setUser(currentUser);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   const [buildingData, setBuildingData] = useState(null);
 
@@ -65,6 +81,8 @@ export const MainContextProvider = ({ children }) => {
         setFloor,
         buildingData,
         setBuildingData,
+        user,
+        setUser,
       }}
     >
       {children}

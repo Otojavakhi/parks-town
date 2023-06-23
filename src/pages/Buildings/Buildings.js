@@ -51,7 +51,7 @@ export const Buildings = () => {
     // Calculates left apartments on hovered building
     const leftApartments = foundBuilding.floors
       .flatMap((floor) => floor.apartments)
-      .filter((apartment) => apartment.sold !== true).length;
+      .filter((apartment) => apartment?.sold !== true).length;
 
     setLeftApartments(leftApartments);
 
