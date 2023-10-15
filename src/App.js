@@ -44,7 +44,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="contact" element={<Contact />} />
       <Route path="admin" element={<AdminSignIn />} />
-      <Route
+      {/* <Route
         path="admin/admin-panel"
         element={
           <ProtectedRoute>
@@ -52,7 +52,7 @@ const router = createBrowserRouter(
           </ProtectedRoute>
         }
         // errorElement={<SignInError />}
-      />
+      /> */}
 
       <Route path="choose-building" element={<FloorsLayout />}>
         {/* <Route index element={<Buildings />} /> */}

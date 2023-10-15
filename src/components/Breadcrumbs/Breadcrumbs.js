@@ -5,8 +5,10 @@ import { HiBuildingOffice2 } from "react-icons/hi2";
 import { ImHome } from "react-icons/im";
 import { BsFillBuildingsFill } from "react-icons/bs";
 import { TbPlayerTrackNextFilled } from "react-icons/tb";
+import { MainUseContext } from "../../context/MainContext";
 
 export const Breadcrumbs = () => {
+  const { setApartmentLocation } = MainUseContext();
   const location = useLocation();
   let currentLink = "";
   const cond = false;
@@ -21,7 +23,6 @@ export const Breadcrumbs = () => {
       let text = "";
       currentLink += `/${crumb}`;
       console.log(array);
-      console.log(index);
 
       // assings icons according crumb value
       if (array[index] === "choose-building") {

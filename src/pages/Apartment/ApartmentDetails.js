@@ -1,15 +1,39 @@
 import "./Apartmentdetails.css";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useLocation } from "react-router-dom";
 import { floorDetailLoader } from "../Floor/FloorDetails";
 import { useState } from "react";
 import { useEffect } from "react";
 import { getDownloadURL, ref } from "firebase/storage";
-import { storage } from "../../FirebaseConfig";
+import { storage, db } from "../../FirebaseConfig";
 import { Spinner } from "../../components/Spinner/Spinner";
-
+import { MainUseContext } from "../../context/MainContext";
+import { useRef } from "react";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
+import { CiEdit } from "react-icons/ci";
 export const ApartmentDetails = () => {
   // Loads apartment's data from floors loader function
   const apartment = useLoaderData();
+  const { user } = MainUseContext();
+  const inputRef = useRef("");
+  const location = useLocation();
+  console.log(
+    "loc",
+    location.pathname
+      .split("/")
+      .filter((crumb) => crumb !== "")
+      .slice(1)
+  );
+  const apartmentLocation = location.pathname
+    .split("/")
+    .filter((crumb) => crumb !== "")
+    .slice(1);
 
   // Changes apartment's images from visual to drawing.
   const [visual, setVisual] = useState(false);
@@ -17,6 +41,7 @@ export const ApartmentDetails = () => {
   const [initialLoading, setInitialLoading] = useState(true);
   const [currentCurrency, setCurrentCurrency] = useState("USD");
   const [gel, setGel] = useState(null);
+  const [editBtnClicked, setEditBtnClicked] = useState(false);
 
   // fetching current USD currency
   const USD_URL =
@@ -69,6 +94,52 @@ export const ApartmentDetails = () => {
     }
   };
 
+  const handleOptionChange = async () => {
+    const inputValue = inputRef.current.value;
+    console.log(inputValue);
+
+    const updatedApartment = { ...apartment, view: inputValue };
+    console.log(updatedApartment);
+
+    const buildingLoc = apartmentLocation[0];
+    const floorLoc = apartmentLocation[1];
+    const apartmentLoc = apartmentLocation[2];
+
+    const buildingQuery = query(
+      collection(db, "buildings"),
+      where("building", "==", buildingLoc)
+    );
+    const buildingSnapshot = await getDocs(buildingQuery);
+
+    buildingSnapshot.forEach((buildingDoc) => {
+      const buildingId = buildingDoc.id;
+      const buildingRef = doc(db, "buildings", buildingId);
+
+      const floors = buildingDoc.data().floors;
+      const updatedFloors = floors.map((floor) => {
+        if (floor.floor === floorLoc) {
+          const updatedApartments = floor.apartments.map((apartment) => {
+            if (apartment.apartment === apartmentLoc) {
+              return { ...apartment, view: inputValue };
+            } else {
+              return apartment;
+            }
+          });
+
+          return { ...floor, apartments: updatedApartments };
+        } else {
+          return floor;
+        }
+      });
+
+      updateDoc(buildingRef, { floors: updatedFloors });
+    });
+  };
+
+  const handleEditClick = (e) => {
+    console.log(e.target.value);
+  };
+
   if (initialLoading)
     return (
       <div className="isloading">
@@ -114,11 +185,42 @@ export const ApartmentDetails = () => {
             <h4>აივანი</h4>
             <span>{apartment.balcony}</span>
           </span>
-          <span className="info-display">
+          {/* <span className="info-display">
             <h4>ხედი</h4>
             <span>{apartment.view}</span>
-          </span>
+          </span> */}
+          {user ? (
+            <span className="info-display">
+              {/* <h4>status</h4>
+              <select name="" id="">
+                <option value="false">გასაყიდი</option>
+                <option value="true">გაიყიდა</option>
+              </select>
+              <span>{apartment.sold}</span> */}
+              <span>
+                ბინის სტატუსი: {apartment.sold ? "გაიყიდა" : "იყიდება"}{" "}
+                <CiEdit
+                  className="edit-icon"
+                  onClick={() => setEditBtnClicked(!editBtnClicked)}
+                />
+              </span>
+              {/* <input type="text" ref={inputRef} />
+              <button onClick={handleOptionChange}>change</button> */}
+            </span>
+          ) : null}
         </div>
+        {editBtnClicked ? (
+          <div className="edit-apartment-container">
+            <h5>აირჩიეთ ბინის სტატუსი</h5>
+            <select name="" id="" onClick={handleEditClick}>
+              <option value="false">იყიდება</option>
+              <option value="true">გაიყიდა</option>
+            </select>
+            <button>შენახვა</button>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
       <div className="apartment-imgs">
         <button onClick={() => setVisual(!visual)}>
@@ -136,6 +238,7 @@ export const apartmentDetailsLoader = async ({ params }) => {
     const { apart } = params;
 
     const floor = await floorDetailLoader({ params });
+    console.log("floor", floor);
 
     const apartment = floor.apartments.find((ap) => ap.apartment === apart);
 

@@ -30,6 +30,11 @@ export const MainContextProvider = ({ children }) => {
     };
   }, []);
 
+  const [apartmentLocation, setApartmentLocation] = useState([]);
+
+  // choosen building for update prices only for Admin
+  const [choosenBuilding, setChoosenBuilding] = useState("");
+
   const [buildingData, setBuildingData] = useState(null);
 
   // get image from storage
@@ -83,6 +88,10 @@ export const MainContextProvider = ({ children }) => {
         setBuildingData,
         user,
         setUser,
+        choosenBuilding,
+        setChoosenBuilding,
+        apartmentLocation,
+        setApartmentLocation,
       }}
     >
       {children}

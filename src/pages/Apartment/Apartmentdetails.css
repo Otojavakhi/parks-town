@@ -71,6 +71,7 @@
 
 .info-display h4 {
   color: var(--main-navlink-color);
+  margin-bottom: 4px;
 }
 .apartment-price-container {
   display: flex;
@@ -97,4 +98,29 @@
   height: 31px;
   background-color: var(--main-navlink-color);
   color: #f1f1f1;
+}
+
+.edit-icon {
+  position: absolute;
+  font-size: 20px;
+  margin-left: 4px;
+}
+
+.edit-apartment-container {
+  position: relative;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background-color: rgb(243, 243, 243);
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 20px #3c46641f;
+  overflow: hidden;
+  z-index: 999;
 }

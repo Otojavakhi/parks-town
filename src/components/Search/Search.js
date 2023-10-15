@@ -15,6 +15,7 @@ export const Search = () => {
   const refMaxSquare = useRef(150);
 
   const { buildingData } = MainUseContext();
+
   console.log(buildingData);
   useEffect(() => {
     if (refMaxSquare.current) {

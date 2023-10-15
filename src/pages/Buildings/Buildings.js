@@ -9,7 +9,9 @@ import { BuildingError } from "./BuildingError";
 import { ImHome } from "react-icons/im";
 import { BsFillBuildingsFill } from "react-icons/bs";
 import { FaKey } from "react-icons/fa";
+import { MainUseContext } from "../../context/MainContext";
 export const Buildings = () => {
+  const { setChoosenBuilding } = MainUseContext();
   const [buildingCoordinates, setBuildingCoordinates] = useState({
     x: 0,
     y: 0,
@@ -24,7 +26,7 @@ export const Buildings = () => {
   // console.log([...buildingCollection]);
   const buildingFinder = (e) => {
     const datasetBuilding = e.target.dataset.building;
-
+    setChoosenBuilding(datasetBuilding);
     navigate(datasetBuilding);
   };
 

@@ -38,7 +38,7 @@ export default function Admin() {
         // setAuthenticated(true);
         console.log("user", cred.user);
         // setUser(cred.user);
-        navigate("admin-panel");
+        navigate("/choose-building");
       })
       .catch((err) => {
         setError("Invalid username or password");

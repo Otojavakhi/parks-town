@@ -2,24 +2,45 @@ import "./FloorsPage.css";
 import leaves from "../../utils/png/leaves-scaled.webp";
 import { MainUseContext } from "../../context/MainContext";
 import { useLoaderData, useNavigate } from "react-router-dom";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  updateDoc,
+} from "firebase/firestore";
+import { getFirestore, doc } from "firebase/firestore";
 import { db, storage } from "../../FirebaseConfig";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Spinner } from "../../components/Spinner/Spinner.js";
 import { FloorsError } from "./FloorsError";
 import { getDownloadURL, ref } from "firebase/storage";
+
 import { Search } from "../../components/Search/Search";
 import { ImHome } from "react-icons/im";
 import { HiBuildingOffice2 } from "react-icons/hi2";
 import { useRef } from "react";
+import { TfiClose } from "react-icons/tfi";
+import { toHaveStyle } from "@testing-library/jest-dom/matchers";
+import { AiFillCheckCircle } from "react-icons/ai";
 
 export default function FloorsPage() {
   const { building } = useLoaderData();
 
-  const { isLoading, setIsLoading, imgUrl, setImgUrl, setBuildingData, user } =
-    MainUseContext();
+  const {
+    isLoading,
+    setIsLoading,
+    imgUrl,
+    setImgUrl,
+    setBuildingData,
+    user,
+    choosenBuilding,
+  } = MainUseContext();
 
+  const [successUpdate, setSuccessUpdate] = useState(false);
+  const priceRef = useRef(null);
+  const [updatedBtnClick, setUpdatedBtnClick] = useState(false);
   const [remainingApartments, setRemainingApartments] = useState(null);
   const [floor, setFloor] = useState(null);
   // sets hovered apartment to true for conditional rendering
@@ -66,6 +87,7 @@ export default function FloorsPage() {
 
     const imageUrl = building.buildingImg;
     const storageRef = ref(storage, imageUrl);
+    // console.log("choosenBuilding", choosenBuilding);
     getDownloadURL(storageRef)
       .then((url) => {
         setImgUrl(url);
@@ -75,7 +97,9 @@ export default function FloorsPage() {
         console.log(error.message);
         setIsLoading(false);
       });
+    console.log(imgUrl);
   }, [setIsLoading, setImgUrl, building.buildingImg]);
+
   // sets mouse cursor coordinates
   const onMouseMove = (e) => {
     const x = e.clientX;
@@ -108,6 +132,7 @@ export default function FloorsPage() {
     floorFounder(datasetFloor);
     // setIsHovered(true);
     isHoveredRef.current = true;
+
     window.addEventListener("mousemove", onMouseMove);
   };
 
@@ -129,6 +154,54 @@ export default function FloorsPage() {
 
     floorFounder(datasetFloor);
     navigate(datasetFloor);
+  };
+
+  const handleUpdateClick = () => {
+    setUpdatedBtnClick(!updatedBtnClick);
+    console.log(updatedBtnClick);
+  };
+
+  const handleUpdatePricesClick = async (e) => {
+    try {
+      e.preventDefault();
+      const price = +priceRef.current?.value;
+      const buildingId = building.building;
+      console.log("building", buildingId);
+
+      if (!buildingId) {
+        // Building ID is not selected, handle the error or show a message
+        return;
+      }
+
+      const buildingQuery = query(
+        collection(db, "buildings"),
+        where("building", "==", buildingId)
+      );
+      const buildingSnapshot = await getDocs(buildingQuery);
+
+      if (!buildingSnapshot.empty) {
+        buildingSnapshot.forEach((buildingDoc) => {
+          const buildingDocRef = doc(db, "buildings", buildingDoc.id);
+
+          const floors = buildingDoc.data().floors || []; // Handle missing or empty floors array
+          const updatedFloors = floors.map((floor) => {
+            const apartments = floor.apartments || []; // Handle missing or empty apartments array
+            const updatedApartments = apartments.map((apartment) => {
+              const currentPrice = apartment.price;
+              const updatedPrice = currentPrice + Number(price);
+              return { ...apartment, price: updatedPrice };
+            });
+            return { ...floor, apartments: updatedApartments };
+          });
+
+          // Update each building document with the new apartment prices
+          updateDoc(buildingDocRef, { floors: updatedFloors });
+        });
+      }
+      setSuccessUpdate(true);
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
   // checks if building is false shows Error page on UI.
@@ -168,9 +241,42 @@ export default function FloorsPage() {
             })}
           </svg>
           <img src={imgUrl} alt="შენობა-1" />
-          {user ? <button>update</button> : null}
-          {5 > 4 ? "correct" : ""}
         </div>
+        {user ? (
+          <button className="update-price-main-btn" onClick={handleUpdateClick}>
+            ფასების მომატება
+          </button>
+        ) : null}
+        {updatedBtnClick ? (
+          <form className="update-apartments-price-form">
+            <h4>ჩაწერეთ ფასი:</h4>
+            <input
+              type="text"
+              ref={priceRef}
+              placeholder="ჩაწერეთ ფასი დოლარში"
+            />
+            <button className="update-price" onClick={handleUpdatePricesClick}>
+              ფასის მომატება
+            </button>
+            {successUpdate ? (
+              <p className="success-prices-message">
+                ფასები წარმატებით დაემატა
+                <AiFillCheckCircle
+                  style={{ color: "#4bb543", marginLeft: "6px" }}
+                />
+              </p>
+            ) : (
+              ""
+            )}
+            <TfiClose
+              className="price-close-btn"
+              onClick={() => setUpdatedBtnClick(false)}
+            />
+          </form>
+        ) : (
+          ""
+        )}
+        {5 > 4 ? "correct" : ""}
         <div>
           {isHoveredRef.current && (
             <div
